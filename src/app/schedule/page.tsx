@@ -79,7 +79,7 @@ export default function SchedulePage() {
         }
         action={
           <div className="flex gap-2">
-            <div className="flex gap-1 rounded-mid bg-bg-alt p-1">
+            <div className="flex gap-1 rounded-mid bg-sunk p-1">
               {(["timeline", "list"] as const).map((v) => (
                 <button
                   key={v}
@@ -157,7 +157,7 @@ export default function SchedulePage() {
                       value={p.progress}
                       onChange={(e) => bump(p, Number(e.target.value))}
                       aria-label={`Progress for ${p.name}`}
-                      className="h-1.5 flex-1 accent-[#171717]"
+                      className="h-1.5 flex-1 accent-[#1C1917]"
                     />
                     <span className="w-12 text-right text-[14px] font-semibold text-ink">
                       {pct(p.progress)}

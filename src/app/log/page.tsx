@@ -230,7 +230,7 @@ export default function LogPage() {
                     type="button"
                     onClick={() => fileRef.current?.click()}
                     disabled={uploading}
-                    className="flex size-20 shrink-0 flex-col items-center justify-center gap-1 rounded-chip bg-bg-alt text-[12px] font-semibold text-tertiary transition-colors duration-200 ease-linear hover:text-secondary disabled:opacity-50"
+                    className="flex size-20 shrink-0 flex-col items-center justify-center gap-1 rounded-chip bg-sunk text-[12px] font-semibold text-tertiary transition-colors duration-200 ease-linear hover:text-secondary disabled:opacity-50"
                   >
                     <span className="text-[18px] leading-none">+</span>
                     {uploading ? "Saving" : "Add"}

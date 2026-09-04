@@ -89,17 +89,21 @@ export default function BudgetPage() {
       />
 
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <Stat label="Ceiling" value={money(t.ceiling, currency)} sub="Set in Settings" />
-        <Stat label="Allocated" value={money(t.budgeted, currency)} sub="Sum of line budgets" />
+        <Stat icon="wallet" label="Ceiling" value={money(t.ceiling, currency)} sub="Set in Settings" />
+        <Stat icon="layers" label="Allocated" value={money(t.budgeted, currency)} sub="Sum of line budgets" />
         <Stat
+          icon="spend"
           label="Actual spend"
           value={money(t.spent, currency)}
           sub={`${pct(t.usedPct)} of ceiling`}
+          bar={t.usedPct}
+          tone={t.usedPct > 100 ? "risk" : "brand"}
         />
         <Stat
+          icon={t.spent > t.budgeted ? "alert" : "check"}
           label="Variance"
           value={money(t.budgeted - t.spent, currency)}
-          tone={t.spent > t.budgeted ? "risk" : "default"}
+          tone={t.spent > t.budgeted ? "risk" : "done"}
           sub={t.spent > t.budgeted ? "Over the allocated lines" : "Under the allocated lines"}
         />
       </div>
@@ -134,7 +138,7 @@ export default function BudgetPage() {
       <Card pad={false}>
         <div className="flex flex-wrap items-center justify-between gap-3 px-6 pt-6">
           <h2 className="text-ink text-[17px] font-semibold">Line items</h2>
-          <div className="flex gap-1 rounded-mid bg-bg-alt p-1">
+          <div className="flex gap-1 rounded-mid bg-sunk p-1">
             {(["all", "unpaid", "over"] as const).map((f) => (
               <button
                 key={f}
@@ -171,7 +175,7 @@ export default function BudgetPage() {
                 {rows.map((b) => {
                   const variance = b.budgeted - b.actual;
                   return (
-                    <tr key={b.id} className="border-b border-line-subtle align-top">
+                    <tr key={b.id} className="border-b border-line-soft align-top">
                       <td className="px-6 py-4">
                         <div className="flex flex-col gap-0.5">
                           <span className="text-[14px] font-semibold text-ink">
@@ -195,7 +199,7 @@ export default function BudgetPage() {
                       </td>
                       <td
                         className={`px-3 py-4 text-right text-[14px] font-semibold ${
-                          variance < 0 ? "text-risk" : "text-ok"
+                          variance < 0 ? "text-risk" : "text-done"
                         }`}
                       >
                         {variance < 0 ? "+" : ""}
@@ -207,7 +211,7 @@ export default function BudgetPage() {
                             type="checkbox"
                             checked={b.paid}
                             onChange={() => togglePaid(b.id)}
-                            className="size-4 accent-[#171717]"
+                            className="size-4 accent-[#1C1917]"
                             aria-label={`Mark ${b.description} paid`}
                           />
                           {b.paid ? "Paid" : "Due"}
@@ -327,7 +331,7 @@ export default function BudgetPage() {
                   type="checkbox"
                   checked={draft.paid}
                   onChange={(e) => setDraft({ ...draft, paid: e.target.checked })}
-                  className="size-4 accent-[#171717]"
+                  className="size-4 accent-[#1C1917]"
                 />
                 Settled in full
               </label>

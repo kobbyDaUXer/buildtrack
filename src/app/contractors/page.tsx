@@ -129,11 +129,11 @@ export default function ContractorsPage() {
                       <dt className="text-tertiary">Contact</dt>
                       <dd className="m-0 text-body">
                         {c.phone ? (
-                          <a className="text-accent-text" href={`tel:${c.phone}`}>
+                          <a className="text-brand-deep" href={`tel:${c.phone}`}>
                             {c.phone}
                           </a>
                         ) : c.email ? (
-                          <a className="text-accent-text" href={`mailto:${c.email}`}>
+                          <a className="text-brand-deep" href={`mailto:${c.email}`}>
                             {c.email}
                           </a>
                         ) : (

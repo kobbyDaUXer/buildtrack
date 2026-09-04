@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useStore } from "@/lib/store";
 import type { Task, Priority } from "@/lib/types";
-import { Button, Card, Empty, Field, Modal, PageHead, Tag, inputCls } from "@/components/ui";
+import { Button, Card, Chip, Empty, Field, Modal, PageHead, Tag, inputCls } from "@/components/ui";
 import { shortDate, todayISO, uid } from "@/lib/format";
 
 const emptyTask = (): Task => ({
@@ -17,12 +17,6 @@ const emptyTask = (): Task => ({
 });
 
 const PRIORITY: Priority[] = ["high", "medium", "low"];
-
-const PRIORITY_SKIN: Record<Priority, string> = {
-  high: "text-risk",
-  medium: "text-warn",
-  low: "text-tertiary",
-};
 
 export default function TasksPage() {
   const { state, update, hydrated } = useStore();
@@ -123,13 +117,25 @@ export default function TasksPage() {
               return (
                 <li
                   key={task.id}
-                  className="flex items-start gap-4 border-b border-line-subtle px-6 py-4 last:border-b-0"
+                  className="flex items-start gap-3 border-b border-line-soft px-4 py-2.5 last:border-b-0 hover:bg-bg"
                 >
+                  <span
+                    className={`mt-1 h-5 w-[3px] shrink-0 rounded-full ${
+                      task.done
+                        ? "bg-line"
+                        : task.priority === "high"
+                          ? "bg-risk"
+                          : task.priority === "medium"
+                            ? "bg-warn"
+                            : "bg-line"
+                    }`}
+                    aria-hidden
+                  />
                   <input
                     type="checkbox"
                     checked={task.done}
                     onChange={() => toggle(task.id)}
-                    className="mt-1 size-4 shrink-0 accent-[#171717]"
+                    className="mt-0.5 size-4 shrink-0 accent-[#1C1917]"
                     aria-label={`Mark "${task.title}" done`}
                   />
                   <div className="flex min-w-0 flex-1 flex-col gap-1">
@@ -145,10 +151,8 @@ export default function TasksPage() {
                         <Tag>{phaseName(task.phaseId)}</Tag>
                       ) : null}
                       {task.assignee ? <Tag>{task.assignee}</Tag> : null}
-                      {!task.done ? (
-                        <span className={`text-[12px] font-semibold ${PRIORITY_SKIN[task.priority]}`}>
-                          {task.priority}
-                        </span>
+                      {!task.done && task.priority !== "low" ? (
+                        <Chip tone={task.priority === "high" ? "risk" : "warn"}>{task.priority}</Chip>
                       ) : null}
                     </div>
                   </div>

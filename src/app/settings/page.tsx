@@ -145,7 +145,7 @@ export default function SettingsPage() {
             }}
           />
         </div>
-        {note ? <p className="m-0 mt-4 text-[13px] text-ok">{note}</p> : null}
+        {note ? <p className="m-0 mt-4 text-[13px] text-done">{note}</p> : null}
         {error ? <p className="m-0 mt-4 text-[13px] text-risk">{error}</p> : null}
       </Card>
 

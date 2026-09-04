@@ -118,10 +118,10 @@ export function PhaseTimeline({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-4 text-[12px] text-tertiary">
           <span className="flex items-center gap-1.5">
-            <span className="h-2 w-5 rounded-full bg-ink" /> Done
+            <span className="h-2 w-5 rounded-full bg-done" /> Done
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="h-2 w-5 rounded-full bg-line-subtle" /> Planned
+            <span className="h-2 w-5 rounded-full bg-line" /> Planned
           </span>
           <span className="flex items-center gap-1.5">
             <span className="h-2 w-5 rounded-full bg-risk" /> Blocked
@@ -130,7 +130,7 @@ export function PhaseTimeline({
             <span className="h-3.5 w-px bg-risk" /> Today
           </span>
         </div>
-        <div className="flex gap-1 rounded-mid bg-bg-alt p-1">
+        <div className="flex gap-1 rounded-mid bg-sunk p-1">
           {ZOOMS.map((z) => (
             <button
               key={z.id}
@@ -195,12 +195,12 @@ export function PhaseTimeline({
               return (
                 <div
                   key={p.id}
-                  className="flex items-center border-b border-line-subtle last:border-b-0"
+                  className="flex items-center border-b border-line-soft last:border-b-0"
                 >
                   <button
                     onClick={() => onEdit(p)}
                     style={{ width: nameCol, height: ROW_H }}
-                    className="sticky left-0 z-20 flex shrink-0 flex-col justify-center gap-0.5 bg-bg px-4 text-left transition-colors duration-200 ease-linear hover:bg-bg-alt"
+                    className="sticky left-0 z-20 flex shrink-0 flex-col justify-center gap-0.5 bg-bg px-4 text-left transition-colors duration-200 ease-linear hover:bg-sunk"
                   >
                     <span className="truncate text-[14px] font-semibold text-ink">{p.name}</span>
                     <span className="text-[12px] text-tertiary">
@@ -213,16 +213,18 @@ export function PhaseTimeline({
                       title={`${p.name} · ${shortDate(p.start)} → ${shortDate(p.end)} · ${pct(p.progress)}`}
                       className={`absolute top-1/2 -translate-y-1/2 overflow-hidden rounded-chip ${
                         p.status === "done"
-                          ? "bg-ink"
+                          ? "bg-done"
                           : p.status === "blocked"
                             ? "bg-risk"
-                            : "bg-line-subtle"
+                            : p.status === "in-progress"
+                              ? "bg-live-bg"
+                              : "bg-line"
                       }`}
                       style={{ left, width, height: 14 }}
                     >
                       {p.status === "in-progress" ? (
                         <div
-                          className="h-full rounded-chip bg-ink"
+                          className="h-full rounded-chip bg-live"
                           style={{ width: `${Math.max(0, Math.min(100, p.progress))}%` }}
                         />
                       ) : null}

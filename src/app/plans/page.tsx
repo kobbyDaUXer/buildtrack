@@ -56,7 +56,7 @@ export default function PlansPage() {
             href={SET_URL}
             target="_blank"
             rel="noopener"
-            className="inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-ctl bg-accent px-4 text-[14px] font-semibold text-white shadow-btn-accent transition-colors duration-200 ease-linear hover:bg-[#6941C6]"
+            className="inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-ctl bg-brand px-4 text-[14px] font-semibold text-white shadow-btn transition-colors duration-200 ease-linear hover:bg-brand-deep"
           >
             Open the full set
           </a>
@@ -80,7 +80,7 @@ export default function PlansPage() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[560px] border-collapse text-[15px]">
             <thead>
-              <tr className="bg-bg-alt">
+              <tr className="bg-sunk">
                 {["Level", "What is on it", "Flats", "Net internal", "Balcony"].map((h) => (
                   <th
                     key={h}
@@ -94,17 +94,17 @@ export default function PlansPage() {
             <tbody>
               {LEVELS.map((r) => (
                 <tr key={r.level}>
-                  <td className="border-b border-line-subtle px-6 py-3 font-semibold text-ink">
+                  <td className="border-b border-line-soft px-6 py-3 font-semibold text-ink">
                     {r.level}
                   </td>
-                  <td className="border-b border-line-subtle px-6 py-3">{r.use}</td>
-                  <td className="border-b border-line-subtle px-6 py-3 tabular-nums text-ink">
+                  <td className="border-b border-line-soft px-6 py-3">{r.use}</td>
+                  <td className="border-b border-line-soft px-6 py-3 tabular-nums text-ink">
                     {r.flats}
                   </td>
-                  <td className="border-b border-line-subtle px-6 py-3 tabular-nums text-ink">
+                  <td className="border-b border-line-soft px-6 py-3 tabular-nums text-ink">
                     {r.nia}
                   </td>
-                  <td className="border-b border-line-subtle px-6 py-3 tabular-nums text-ink">
+                  <td className="border-b border-line-soft px-6 py-3 tabular-nums text-ink">
                     {r.balcony}
                   </td>
                 </tr>
@@ -121,7 +121,7 @@ export default function PlansPage() {
         />
         <div className="flex flex-col gap-5">
           {OPEN_QUESTIONS.map((o) => (
-            <div key={o.q} className="border-l-2 border-accent pl-4">
+            <div key={o.q} className="border-l-2 border-brand pl-4">
               <h3 className="mb-1 text-[15px] font-semibold text-ink">{o.q}</h3>
               <p className="m-0 text-[14px]">{o.why}</p>
             </div>
@@ -139,7 +139,7 @@ export default function PlansPage() {
                 href={SET_URL}
                 target="_blank"
                 rel="noopener"
-                className="text-[14px] font-semibold text-accent-text underline decoration-accent underline-offset-[3px]"
+                className="text-[14px] font-semibold text-brand-deep underline decoration-brand underline-offset-[3px]"
               >
                 Open in a new tab
               </a>

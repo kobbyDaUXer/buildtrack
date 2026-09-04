@@ -38,7 +38,7 @@ export function PhotoThumb({
   const url = usePhotoURL(id);
 
   return (
-    <div className="relative size-20 shrink-0 overflow-hidden rounded-chip bg-bg-alt">
+    <div className="relative size-20 shrink-0 overflow-hidden rounded-chip bg-sunk">
       {url ? (
         <button
           type="button"
