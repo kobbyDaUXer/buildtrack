@@ -41,6 +41,7 @@ The app opens with a sample project so the screens are legible on first run.
 | Tasks | Open work with owner, phase, priority and due date; overdue shown in red |
 | Contractors | Directory with paid-to-date and open-task counts derived from the other screens |
 | Site log | Dated notes with weather, crew count and site photos — the record you will wish you had kept |
+| Plans | The design-intent drawing set for the building, plus the two questions that must be answered before anything is priced |
 | Settings | Project details, currency, backup, reset |
 
 ## Three things worth knowing
@@ -72,4 +73,21 @@ src/lib/types.ts  the data model
 src/lib/store.tsx React context + localStorage persistence, and derived totals
 src/lib/seed.ts   the sample project
 src/lib/photos.ts IndexedDB photo store, downscaling and size reporting
+public/plans/     the drawing set, one self-contained HTML file
 ```
+
+## The plans screen is static, on purpose
+
+`public/plans/plot-b.html` is the whole drawing set in one self-contained file — thirteen sheets
+of plans, an elevation, a long section and a 3D model, all drawn in JavaScript with no external
+assets beyond Google Fonts. The Plans screen frames it and repeats its headline figures.
+
+Those figures are **read off the drawings, not from your live project data.** The plan is a record
+of a decision; the rest of the app tracks what happens after it. If the design changes, replace
+that one file and update the numbers in `src/app/plans/page.tsx` — they are deliberately not wired
+to the store, because a drawing set that silently followed your budget edits would be worse than
+useless.
+
+The served copy carries `data-theme="light"` on its `<html>` tag. The drawing set is theme-aware on
+its own, and BuildTrack is not, so without that attribute the embed would render dark inside a
+light app whenever the reader's machine is in dark mode.
