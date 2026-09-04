@@ -73,6 +73,8 @@ export interface LogEntry {
   body: string;
   weather: string;
   crewOnSite: number;
+  /** IndexedDB keys — the blobs themselves live in the photo store. */
+  photos: string[];
 }
 
 export interface AppState {

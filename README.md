@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BuildTrack
 
-## Getting Started
+A single-project construction tracker: budget, phases, tasks, contractors and a dated site log,
+in one app. Built with Next.js 16, React 19 and Tailwind 4.
 
-First, run the development server:
+## Running it
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where the data lives
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Project data is kept in your browser's `localStorage` under the key `buildtrack.v1`. Site photos
+are too large for that, so they live in IndexedDB (`buildtrack-photos`), downscaled to 1600px on
+the way in — a 4MB camera JPEG lands at roughly 200KB. There is no server, no database and no
+account — which means:
 
-## Learn More
+- The data is private to this browser on this machine.
+- Clearing site data wipes it.
+- It does not sync between your laptop and your phone.
 
-To learn more about Next.js, take a look at the following resources:
+**Settings → Export backup** writes the project to a JSON file; **Import backup** reads one back.
+Use it before clearing anything, and as your off-machine copy.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**The backup does not include site photos** — only the text of each log entry. Photos stay on the
+device. Settings shows how many you are holding and how much space they take.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app opens with a sample project so the screens are legible on first run.
+**Settings → Clear all data** wipes it and gives you an empty project.
 
-## Deploy on Vercel
+## The screens
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Screen | What it is for |
+|---|---|
+| Dashboard | Spend against budget, work done against time elapsed, what is next, what has overrun |
+| Schedule | Timeline view — phases on a shared time axis with a today marker, so overlaps and slippage are visible; List view for editing and progress sliders |
+| Budget | Line items with budgeted vs actual, grouped totals by category, paid/unpaid |
+| Tasks | Open work with owner, phase, priority and due date; overdue shown in red |
+| Contractors | Directory with paid-to-date and open-task counts derived from the other screens |
+| Site log | Dated notes with weather, crew count and site photos — the record you will wish you had kept |
+| Settings | Project details, currency, backup, reset |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Three things worth knowing
+
+- **Contractor totals match on name.** "Paid to date" sums budget line items whose *vendor* string
+  equals the contractor's *name*. Keep the spelling identical or the total reads zero.
+- **Budget ceiling vs allocated.** The ceiling is what you set in Settings. Allocated is the sum of
+  your line-item budgets. They are allowed to differ — the gap is the point.
+- **Photos are the one thing a backup cannot carry.** If the browser profile goes, they go. On a
+  build that matters, keep the originals on your phone or in cloud storage as well.
+
+## Deploying
+
+It is a static-export-friendly Next app with no server dependencies:
+
+```bash
+npx vercel
+```
+
+Because state is per-browser, a deployed copy gives you the app on your phone but *not* your
+laptop's data. Move data across with export/import.
+
+## Structure
+
+```
+src/app/          one route per screen
+src/components/   Shell (nav) and ui.tsx (Card, Button, Modal, Stat, …)
+src/lib/types.ts  the data model
+src/lib/store.tsx React context + localStorage persistence, and derived totals
+src/lib/seed.ts   the sample project
+src/lib/photos.ts IndexedDB photo store, downscaling and size reporting
+```
