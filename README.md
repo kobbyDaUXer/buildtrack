@@ -87,3 +87,7 @@ of a decision; the rest of the app tracks what happens after it. If the design c
 that one file and update the numbers in `src/app/plans/page.tsx` — they are deliberately not wired
 to the store, because a drawing set that silently followed your budget edits would be worse than
 useless.
+
+The served copy carries `data-theme="light"` on its `<html>` tag. The drawing set is theme-aware on
+its own, and BuildTrack is not, so without that attribute the embed would render dark inside a
+light app whenever the reader's machine is in dark mode.
