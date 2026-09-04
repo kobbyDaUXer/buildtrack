@@ -1,0 +1,1806 @@
+<!doctype html>
+<!-- Pinned to the light palette: BuildTrack has no dark theme, so an embed that
+     followed the OS scheme would render dark inside a light app. The drawing set
+     itself is theme-aware; this one copy is not. -->
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The 35 &#215; 72 Apartment Block</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --paper:#F3F2EF; --surface:#FFFFFF; --sunk:#EAE8E3;
+  --ink:#15171B; --ink2:#464B54; --ink3:#767C87;
+  --rule:#D6D3CC; --rule2:#E6E4DE;
+  --dim:#A3372B; --steel:#38434F; --olive:#5E6B4C;
+  --wash:#ECEAE4; --void:#DAD7D0; --glass:#C8D3D6;
+  --shadow:0 1px 2px rgba(20,22,26,.05), 0 8px 24px -12px rgba(20,22,26,.16);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#131518; --surface:#1A1D21; --sunk:#101215;
+    --ink:#EDEBE6; --ink2:#A8AEB8; --ink3:#737A85;
+    --rule:#2E333A; --rule2:#24282D;
+    --dim:#E58060; --steel:#8FA3B5; --olive:#9AAC80;
+    --wash:#202429; --void:#1E2227; --glass:#2A363C;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#131518; --surface:#1A1D21; --sunk:#101215;
+  --ink:#EDEBE6; --ink2:#A8AEB8; --ink3:#737A85;
+  --rule:#2E333A; --rule2:#24282D;
+  --dim:#E58060; --steel:#8FA3B5; --olive:#9AAC80;
+  --wash:#202429; --void:#1E2227; --glass:#2A363C;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink2);font-family:"Source Sans 3","Helvetica Neue",Arial,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px 96px}
+
+h1,h2,h3,h4{font-family:Archivo,"Helvetica Neue",Arial,sans-serif;color:var(--ink);margin:0;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:clamp(30px,5vw,50px);font-weight:700;line-height:1.05;letter-spacing:-.03em}
+h2{font-size:clamp(23px,3vw,30px);font-weight:600;line-height:1.15}
+h3{font-size:19px;font-weight:600;line-height:1.25}
+h4{font-size:15px;font-weight:600}
+p{margin:0}
+a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--dim)}
+a:focus-visible{outline:2px solid var(--dim);outline-offset:3px;border-radius:3px}
+
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.muted{color:var(--ink3)}
+.stack{display:flex;flex-direction:column}
+.g8{gap:8px}.g12{gap:12px}.g16{gap:16px}.g24{gap:24px}.g32{gap:32px}
+
+.titleblock{background:var(--surface);border:1px solid var(--rule);margin:28px 0 0;box-shadow:var(--shadow)}
+.tb-main{padding:34px 32px 28px;display:flex;flex-direction:column;gap:16px;border-bottom:1px solid var(--rule)}
+.tb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.tb-cell{padding:14px 20px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:3px}
+.tb-cell:last-child{border-right:0}
+.tb-cell .k{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.tb-cell .v{font-family:Archivo,sans-serif;font-size:15px;font-weight:600;color:var(--ink)}
+@media(max-width:640px){.tb-cell{border-right:0;border-bottom:1px solid var(--rule)}}
+
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:1px}
+.fig{background:var(--surface);padding:20px;display:flex;flex-direction:column;gap:4px}
+.fig .n{font-family:Archivo,sans-serif;font-size:32px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.fig .n small{font-size:15px;font-weight:600;color:var(--ink3);letter-spacing:0}
+.fig .l{font-size:13.5px;color:var(--ink3);line-height:1.35}
+
+section{padding-top:72px}
+.shead{display:flex;flex-direction:column;gap:10px;padding-bottom:24px;border-bottom:2px solid var(--ink);margin-bottom:28px}
+.shead .row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.dwgno{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;font-weight:500;letter-spacing:.1em;color:var(--surface);background:var(--ink);padding:3px 8px}
+.lede{max-width:62ch;font-size:18px}
+
+.sheet{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:start}
+@media(max-width:900px){.sheet{grid-template-columns:1fr;gap:28px}}
+.plate{background:var(--surface);border:1px solid var(--rule);padding:18px;box-shadow:var(--shadow);overflow-x:auto}
+.plate svg{display:block;width:100%;height:auto;min-width:280px}
+
+.dwg .site{fill:none;stroke:var(--ink3);stroke-width:1;stroke-dasharray:9 4 2 4}
+.dwg .over{fill:none;stroke:var(--dim);stroke-width:1.3;stroke-dasharray:7 4}
+.dwg .roofline{fill:none;stroke:var(--ink3);stroke-width:.8;stroke-dasharray:3 3}
+.dwg .wall{fill:var(--steel);stroke:none}
+.dwg .r{stroke:var(--rule);stroke-width:.8}
+.dwg .r-room{fill:var(--surface)}
+.dwg .r-wet{fill:var(--wash)}
+.dwg .r-open{fill:var(--void)}
+.dwg .r-green{fill:var(--olive);opacity:.22}
+.dwg .r-car{fill:var(--glass);opacity:.55}
+.dwg .r-core{fill:var(--wash)}
+.dwg .r-shade{fill:var(--steel);opacity:.13}
+.dwg .col{fill:var(--ink)}
+.dwg .newcol{fill:var(--dim)}
+.dwg .rl{font-family:Archivo,sans-serif;font-size:8.6px;font-weight:600;fill:var(--ink);text-anchor:middle;letter-spacing:.02em}
+.dwg .rs{font-family:"IBM Plex Mono",monospace;font-size:7px;fill:var(--ink3);text-anchor:middle}
+.dwg .dim line{stroke:var(--dim);stroke-width:.7}
+.dwg .dim text{font-family:"IBM Plex Mono",monospace;font-size:9px;fill:var(--dim);text-anchor:middle;font-variant-numeric:tabular-nums}
+.dwg .note{font-family:"IBM Plex Mono",monospace;font-size:8.5px;fill:var(--ink3)}
+.dwg .lead{stroke:var(--ink3);stroke-width:.6;fill:none}
+.dwg .stair{stroke:var(--ink3);stroke-width:.7;fill:none}
+.dwg .arrow{stroke:var(--ink);stroke-width:1.1;fill:none}
+.dwg .metal{fill:var(--steel)}
+.dwg .gridtx{font-family:"IBM Plex Mono",monospace;font-size:8.5px;fill:var(--dim);text-anchor:middle;font-weight:500}
+.dwg .lvltx{font-family:"IBM Plex Mono",monospace;font-size:9px;fill:var(--ink2);font-variant-numeric:tabular-nums}
+.dwg .gap{stroke:var(--surface);stroke-width:2.6;stroke-linecap:butt}
+.dwg .leaf{stroke:var(--ink);stroke-width:1.3}
+.dwg .swing{fill:none;stroke:var(--ink3);stroke-width:.65;stroke-dasharray:2.5 2}
+.dwg .slide{stroke:var(--ink);stroke-width:1.6}
+.dwg .cased{stroke:var(--ink3);stroke-width:1.1}
+.dwg .win{fill:var(--glass);stroke:var(--steel);stroke-width:.5}
+.dwg .winline{stroke:var(--steel);stroke-width:.9}
+
+.legend{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.legend .li{background:var(--surface);display:flex;align-items:center;gap:12px;padding:9px 12px;font-size:13.5px}
+.legend svg{flex:0 0 46px;width:46px;height:26px;display:block}
+
+.sched{display:flex;flex-direction:column;gap:2px}
+.sched .row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--rule2);font-size:14.5px}
+.sched .row:last-child{border-bottom:0}
+.sched .row.tot{border-top:1.5px solid var(--ink);border-bottom:0;margin-top:6px;padding-top:9px;font-weight:600;color:var(--ink)}
+.sched .row.sub{color:var(--ink3);font-size:13.5px;padding-left:14px}
+.sched .row span:last-child{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.sched .row.sub span:last-child{color:var(--ink3)}
+.swatchrow{display:flex;align-items:center;gap:9px;font-size:14px;padding:5px 0}
+.sw{width:15px;height:15px;flex:0 0 15px;border:1px solid var(--rule)}
+
+.notebox{border-left:2px solid var(--dim);padding:2px 0 2px 16px;display:flex;flex-direction:column;gap:8px}
+.notebox h4{color:var(--dim);font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.notebox p{font-size:14.5px;line-height:1.5}
+
+.tblwrap{overflow-x:auto;border:1px solid var(--rule);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--rule2);vertical-align:top}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);font-weight:500;background:var(--sunk);border-bottom:1px solid var(--rule)}
+td.num{font-family:"IBM Plex Mono",monospace;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tr.hi td{background:color-mix(in srgb, var(--dim) 7%, transparent)}
+tr.hi td:first-child{box-shadow:inset 2px 0 0 var(--dim)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.card{background:var(--surface);padding:22px;display:flex;flex-direction:column;gap:9px}
+.card .idx{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--dim);letter-spacing:.1em}
+.card p{font-size:14.5px;line-height:1.5}
+
+.check{display:flex;flex-direction:column;gap:1px;background:var(--rule);border:1px solid var(--rule);list-style:none;margin:0;padding:0}
+.check li{background:var(--surface);padding:15px 18px;display:flex;gap:14px;align-items:flex-start;font-size:15.5px}
+.check .box{width:15px;height:15px;flex:0 0 15px;border:1.5px solid var(--ink3);margin-top:4px}
+
+.callout{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--dim);padding:24px 26px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--shadow)}
+.callout h3{font-size:17px}
+.callout p{font-size:15px;max-width:70ch}
+
+/* ---------- 3D viewer ---------- */
+.viewer{background:var(--surface);border:1px solid var(--rule);box-shadow:var(--shadow);padding:14px;display:flex;flex-direction:column;gap:12px}
+.v-controls{display:flex;flex-wrap:wrap;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.vbtn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;text-transform:uppercase;
+  background:var(--surface);color:var(--ink3);border:0;padding:10px 14px;cursor:pointer;flex:1 1 auto;
+  transition:background-color .2s linear,color .2s linear}
+.vbtn:hover{background:var(--sunk);color:var(--ink)}
+.vbtn.is-on{background:var(--ink);color:var(--surface)}
+.vbtn:focus-visible{outline:2px solid var(--dim);outline-offset:-2px}
+.v-reset{flex:0 0 auto;color:var(--dim)}
+#m3d{display:block;width:100%;height:auto;aspect-ratio:1200/760;touch-action:none;cursor:grab;background:transparent}
+#m3d:active{cursor:grabbing}
+.v-hint{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink3);text-align:center}
+@media (prefers-reduced-motion: reduce){.vbtn{transition:none}}
+
+footer{margin-top:88px;padding-top:26px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--ink3);display:flex;flex-direction:column;gap:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="titleblock">
+  <div class="tb-main">
+    <span class="eyebrow">Design intent &#183; dimensioned in feet and inches</span>
+    <h1>Four levels on a 35&nbsp;&#215;&nbsp;72 plot</h1>
+    <p class="lede">Four flats over an open car park. Level 1 is divided in two about the central stair &#8212; a pair of identical one-bedroom flats. Levels 2 and 3 each take the whole plate as one large two-bedroom apartment. The ground floor sits back on its full setbacks; floors 1 to 3 step out to within 4 ft front and back on two columns, giving bigger apartments above and a shaded drop-off below.</p>
+  </div>
+  <div class="tb-grid">
+    <div class="tb-cell"><span class="k">Plots A + B</span><span class="v mono">5,740 ft&#178;</span></div>
+    <div class="tb-cell"><span class="k">Ground floor</span><span class="v mono">31'-0" &#215; 54'-0"</span></div>
+    <div class="tb-cell"><span class="k">Floors 1&#8211;3</span><span class="v mono">31'-0" &#215; 64'-0"</span></div>
+    <div class="tb-cell"><span class="k">Working unit</span><span class="v">Feet and inches</span></div>
+    <div class="tb-cell"><span class="k">Status</span><span class="v">Concept</span></div>
+  </div>
+</header>
+
+<div class="figs">
+  <div class="fig"><span class="n">4</span><span class="l">flats &#8212; two one-bed on level 1, a two-bed on each of levels 2 and 3</span></div>
+  <div class="fig"><span class="n">6</span><span class="l">bedrooms in the building, every one with toilet and bath inside</span></div>
+  <div class="fig"><span class="n">4,594<small> ft&#178;</small></span><span class="l">lettable internal area, plus 524 ft&#178; of balconies</span></div>
+  <div class="fig"><span class="n">8</span><span class="l">cars &#8212; seven covered bays and one on the apron, for four flats</span></div>
+  <div class="fig"><span class="n">7,626<small> ft&#178;</small></span><span class="l">total built across four levels</span></div>
+</div>
+
+<!-- ===================== 3D MODEL ===================== -->
+<section id="s3d">
+  <div class="shead">
+    <div class="row"><span class="dwgno">3D</span><h2>The building, turned</h2></div>
+    <p class="lede">Drag to spin it. The two inside views cut the walls down to 4'-6" &#8212; level 1 shows the pair of one-bedroom flats, level 2 the two-bedroom apartment above it. Built from the same dimensions as the drawings below, so what you see here is what the plans say &mdash; not an impression of it.</p>
+  </div>
+  <div class="viewer">
+    <div class="v-controls" role="group" aria-label="Model views">
+      <button type="button" class="vbtn is-on" data-mode="all">Whole building</button>
+      <button type="button" class="vbtn" data-mode="ground">Ground / car park</button>
+      <button type="button" class="vbtn" data-mode="l1">Level 1 &#8212; two 1-beds</button>
+      <button type="button" class="vbtn" data-mode="l2">Level 2 &#8212; the 2-bed</button>
+      <button type="button" class="vbtn" data-mode="explode">Exploded</button>
+      <button type="button" class="vbtn v-reset" data-mode="reset">Reset view</button>
+    </div>
+    <canvas id="m3d" width="1200" height="760" aria-label="Three-dimensional model of the apartment block"></canvas>
+    <p class="v-hint">Drag to rotate &middot; shift-drag or two fingers to tilt</p>
+  </div>
+</section>
+
+<!-- ===================== 0. THE OVERHANG ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">00</span><h2>What the overhang buys</h2></div>
+    <p class="lede">The ground floor keeps its full setbacks so the car park, the turning space and the walkway all stay. Only floors 1 to 3 step out &#8212; 6 ft forward and 4 ft back &#8212; which adds 310 ft&#178; to every apartment and puts all of it in shade over the ground below.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="plate" id="cmp"></div>
+    <div class="stack g24">
+      <div class="sched">
+        <div class="row"><span>Ground floor footprint</span><span>31' &#215; 54'</span></div>
+        <div class="row sub"><span>front / rear setback</span><span>10' / 8'</span></div>
+        <div class="row"><span>Floors 1&#8211;3 footprint</span><span>31' &#215; 64'</span></div>
+        <div class="row sub"><span>front / rear setback</span><span>4' / 4'</span></div>
+        <div class="row sub"><span>east setback, to the neighbour</span><span>3'-11" to 5'-2"</span></div>
+        <div class="row sub"><span>west wall</span><span>on the A / B line</span></div>
+        <div class="row"><span>Front overhang</span><span style="color:var(--dim)">6'-0"</span></div>
+        <div class="row"><span>Rear overhang</span><span style="color:var(--dim)">4'-0"</span></div>
+        <div class="row"><span>Roof overhang, all round</span><span>2'-0"</span></div>
+        <div class="row"><span>Gross per upper floor</span><span>1,984 ft&#178;</span></div>
+        <div class="row"><span>Gain from the overhang</span><span>+310 ft&#178;</span></div>
+        <div class="row"><span>Gain from the extra 4 ft west</span><span>+256 ft&#178;</span></div>
+        <div class="row tot"><span>Total built</span><span>7,626 ft&#178;</span></div>
+      </div>
+      <div class="notebox">
+        <h4>Your 3 ft walkway survives everywhere</h4>
+        <p>At ground: 10 ft front, 8 ft rear, 4 ft each side. At the upper floors: 4 ft on all four sides. Every face of the building keeps more than the 3 ft you need to walk round it and maintain it.</p>
+      </div>
+      <div class="notebox">
+        <h4>Two columns instead of a 6 ft cantilever</h4>
+        <p>Hanging three storeys off a 6 ft cantilever is heavy and expensive. Two columns standing in the apron on the new front line carry it instead, and they leave 19'-3" of clear opening &#8212; far more than the gate needs. The rear 4 ft is small enough to simply cantilever, no columns.</p>
+      </div>
+      <div class="notebox">
+        <h4>The left column hides behind the screen</h4>
+        <p>It sits directly behind the black louvre spine, so the screen still runs unbroken from ground to roof in one plane. That line is the thing that makes the building look like the reference; a 6 ft step in it at first-floor level would have killed it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 1. SITE ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">01</span><h2>Site plan &#8212; two build lines on the real boundary</h2></div>
+    <p class="lede">Plot B is not a rectangle. It is 34'-8" wide at the street, 37'-11" at the back, and one side is nearly 8 ft longer than the other. The building is still set out square &#8212; you never build a skewed building to match a skewed plot &#8212; and the irregularity is absorbed in the setbacks.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="plate" id="site"></div>
+    <div class="stack g24">
+      <div class="sched">
+        <div class="row"><span>Front, to the street</span><span>34'-8"</span></div>
+        <div class="row"><span>Rear boundary</span><span>37'-11"</span></div>
+        <div class="row"><span>East side, to the neighbour</span><span>72'-6"</span></div>
+        <div class="row"><span>West side, the A / B line</span><span>80'-2"</span></div>
+        <div class="row"><span>Plot B area</span><span>2,752 ft&#178;</span></div>
+        <div class="row sub"><span>depth on the centreline</span><span>78'-0"</span></div>
+        <div class="row"><span>Plot A area</span><span>2,990 ft&#178;</span></div>
+        <div class="row"><span>A + B, consolidated</span><span>5,740 ft&#178;</span></div>
+        <div class="row"><span>Ground footprint</span><span>1,674 ft&#178;</span></div>
+        <div class="row"><span>Upper footprint</span><span>1,984 ft&#178;</span></div>
+        <div class="row sub"><span>coverage on B alone</span><span>61% / 72%</span></div>
+        <div class="row tot"><span>Coverage on A + B</span><span>29% / 35%</span></div>
+      </div>
+      <div class="notebox">
+        <h4>The survey says it fits, with room over</h4>
+        <p>You need 72 ft of depth for a 4 ft front setback, 64 ft of building and 4 ft at the back. The centreline gives 78 ft. Side setbacks come out at 3'-11" at the street, opening to about 5'-0" at the back &#8212; above your 3 ft walkway on every face. The rear setback runs 5'-5" at the east corner to 11'-1" at the west, because the back boundary is skewed.</p>
+      </div>
+      <div class="notebox">
+        <h4>Square the building to the street, lean the boundary</h4>
+        <p>The two side boundaries both lean the same way but by different amounts, which is why the plot fans out. Set the building out square and let each side setback vary &#8212; that is how it is drawn here. Trying to make the building follow the boundary would put a kink in every wall and every window.</p>
+      </div>
+      <div class="notebox">
+        <h4>Ask this at the planning office first</h4>
+        <p>Is the setback measured to the wall, or to the furthest projection? Most assemblies measure to the projection. If yours does, the 4 ft becomes the binding number for the whole building and this scheme needs changing &#8212; either a smaller overhang, or the ground floor brought forward too. It is one question, and it decides the drawing.</p>
+      </div>
+      <div class="notebox">
+        <h4>If the answer goes against us</h4>
+        <p>Fallback A: cut the overhang to 3 ft front and back, which most regimes allow as a projection. You keep 190 ft&#178; per floor of the 270. Fallback B: bring the ground floor forward as well and accept 4 ft all round &#8212; you lose the open apron but the car park grows to 64 ft deep.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2. GROUND FLOOR ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">02</span><h2>Ground floor &#8212; car park, and nothing else</h2></div>
+    <p class="lede">Every square foot is parking bar the stair and a store. Three lanes nose-to-tail give seven covered bays plus one on the apron &#8212; two cars per flat. The stair sits in the middle of the west lane, which is the one position all four levels can share; the 15'-10" behind it becomes the bin, tank and locker store the building had nowhere for.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="plate" id="gf"></div>
+    <div class="stack g24">
+      <div class="sched">
+        <div class="row"><span>Lane widths</span><span>9'-10" / 9'-11" / 9'-11"</span></div>
+        <div class="row"><span>Bay 1, west lane</span><span>19'-10" long</span></div>
+        <div class="row"><span>Bays 2&#8211;7, middle + east</span><span>15'-7" long</span></div>
+        <div class="row"><span>Stair + lobby</span><span>108 ft&#178;</span></div>
+        <div class="row sub"><span>meters + pump, understair</span><span>&#8212;</span></div>
+        <div class="row"><span>Store, behind the stair</span><span>156 ft&#178;</span></div>
+        <div class="row sub"><span>bins, tanks, tenant lockers</span><span>&#8212;</span></div>
+        <div class="row"><span>Rear garden</span><span>178 ft&#178;</span></div>
+        <div class="row"><span>Clear headroom</span><span>9'-0"</span></div>
+        <div class="row"><span>Apron, covered / open</span><span>6' / 4'</span></div>
+        <div class="row"><span>Covered bays</span><span>7</span></div>
+        <div class="row tot"><span>Total parking</span><span>8 cars, 4 flats</span></div>
+      </div>
+      <div class="notebox">
+        <h4>Why three lanes and not four</h4>
+        <p>Four lanes across 29'-8" gives 7'-5" each. A car is 5'-9" to 6'-6" wide, so nobody could open a door. Three lanes at nearly 10 ft are generous instead, which is what makes the tandem bays usable &#8212; you can walk down the side of a parked car.</p>
+      </div>
+      <div class="notebox">
+        <h4>Read the bay lengths before you count on seven</h4>
+        <p>The middle and east lanes are three deep at 15'-7" a bay. That suits a saloon (a Corolla is 14'-9") and most mid-size SUVs. A full-size Land Cruiser is 16'-4" and will not go three deep &#8212; those two lanes would take two each, giving <strong>five covered</strong> rather than seven. Bay 1 in the west lane is 19'-10" and takes anything on the road. Worth knowing what your tenants actually drive.</p>
+      </div>
+      <div class="notebox">
+        <h4>Cars will block each other, by design</h4>
+        <p>Nose-to-tail is the only way to reach seven, so the front car in each lane owns the ones behind it. That is your call and it is the right trade for this plot &#8212; three independent bays was the alternative. What is <strong>not</strong> acceptable is a bay with no route out at all, which is what the last version had. Number the bays and give every tenant their neighbour's phone number.</p>
+      </div>
+      <div class="notebox">
+        <h4>The stair moved again, and this time it fixed a real error</h4>
+        <p>The street-end position looked tidy and was wrong: it stood across the mouth of the west lane, so the two bays behind it had <strong>no way out at all</strong> &#8212; not blocked by a neighbour, landlocked. Moving it to the middle of that lane gives bay 1 a clear run to the gate, turns the dead 15'-10" behind it into a store, and is the one position the one-bedroom floor and the two-bedroom floors can both use. Usable covered bays go from six to seven. The cost is a 20 ft walk up the lane past one car instead of stepping straight in off the street.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3. TYPICAL FLOOR ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">03</span><h2>Levels 2 and 3 &#8212; one two-bedroom apartment per floor</h2></div>
+    <p class="lede">Repeated identically on levels 2 and 3, and re-planned around the central stair so it sits on the one-bedroom floor below. At 31'-0" &#215; 64'-0" this is 1,528 ft&#178; of net internal area &#8212; both bathrooms inside the bedrooms, a 183 ft&#178; eat-in kitchen, a study, a walk-in pantry, a laundry and a visitor washroom with a real window. <strong>Every room a person sits in has a window of its own.</strong> All doors and windows are shown.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="plate" id="tf"></div>
+    <div class="stack g24">
+      <div class="sched">
+        <div class="row"><span>Living</span><span>260 ft&#178;</span></div>
+        <div class="row"><span>Kitchen + dining, eat-in</span><span>183 ft&#178;</span></div>
+        <div class="row sub"><span>walk-in pantry off it</span><span>36 ft&#178;</span></div>
+        <div class="row"><span>Master bedroom</span><span>256 ft&#178;</span></div>
+        <div class="row sub"><span>dressing + bath, one suite</span><span>143 ft&#178;</span></div>
+        <div class="row"><span>Bedroom 2</span><span>170 ft&#178;</span></div>
+        <div class="row sub"><span>dressing + bath, one suite</span><span>95 ft&#178;</span></div>
+        <div class="row"><span>Study / office</span><span>84 ft&#178;</span></div>
+        <div class="row"><span>Entrance hall</span><span>83 ft&#178;</span></div>
+        <div class="row"><span>Visitor washroom</span><span>29 ft&#178;</span></div>
+        <div class="row"><span>Store / linen</span><span>34 ft&#178;</span></div>
+        <div class="row"><span>Riser cupboard</span><span>24 ft&#178;</span></div>
+        <div class="row"><span>Corridor</span><span>70 ft&#178;</span></div>
+        <div class="row"><span>Laundry, screened</span><span>61 ft&#178;</span></div>
+        <div class="row"><span>Balcony, full width</span><span>178 ft&#178;</span></div>
+        <div class="row tot"><span>Net internal</span><span>1,528 ft&#178;</span></div>
+      </div>
+
+      <div class="stack g12">
+        <span class="eyebrow">Drawing symbols</span>
+        <div class="legend" id="key"></div>
+      </div>
+
+      <div class="notebox">
+        <h4>The front door is now in the middle of the flat</h4>
+        <p>It had to move &#8212; the stair moved &#8212; and it is better where it is. You come off the landing into a hall at the centre of the plan: bedrooms and the corridor to the left, living, dining and kitchen to the right. Nothing is more than about 25 ft from the door. The old plan put the entrance in the corner of the living room, so every trip to a bedroom crossed the room people were sitting in.</p>
+      </div>
+      <div class="notebox">
+        <h4>Bedrooms at the back, living at the front, 70 ft&#178; of corridor between</h4>
+        <p>The two bedrooms sit against the quiet rear boundary with their suites hard against the back wall. The corridor in front of them is <strong>3'-6" wide and 20 ft long &#8212; not the full 29'-8"</strong>. It stops at the last door it has to reach, and the 34 ft&#178; beyond became a store. The first version ran a 4 ft corridor across the whole width to serve two doors: 119 ft&#178; of walking space in a flat where the kitchen was 87. It has a window at its west end, so it is a lit spine rather than a dark passage.</p>
+      </div>
+      <div class="notebox">
+        <h4>The kitchen and dining are one room, and that fixed two faults at once</h4>
+        <p>Three rooms across a 29'-8" plate means the middle one has no outside wall, so the first version had a windowless dining room &#8212; and to fit it, an 87 ft&#178; kitchen. In a 1,528 ft&#178; two-bedroom flat that kitchen was <em>smaller than the one in the 769 ft&#178; flats downstairs</em>, which is indefensible. Merged, it is a <strong>183 ft&#178; eat-in kitchen with a real 6 ft window on the east wall</strong> and a 36 ft&#178; walk-in pantry off it. Same total area, and <strong>every room a person sits in now has a window of its own.</strong> If you would rather have a separate dining room than the study, say so &#8212; that swap works, but only that one: four windowed rooms will not fit across the front.</p>
+      </div>
+      <div class="notebox">
+        <h4>Both suites still open off their own bedroom, through one door</h4>
+        <p>Neither is reached from the corridor, and neither has a second door: you enter the dressing area and walk past a 5" partition into the bath. Both are now <strong>8'-0" deep instead of 6'-10"</strong>, which is what turns the master's into a room you can put a bath across (80 ft&#178;) rather than a shower strip. The visitor washroom is off a short spur of the entrance hall &#8212; a guest never gets past the hall, and the spur is what buys it a real window on the east wall instead of an extract fan.</p>
+      </div>
+      <div class="notebox">
+        <h4>Three stacks, and the rear one goes out through the wall</h4>
+        <p>The visitor washroom, the pantry, the kitchen and the laundry all sit in the east strip, directly over the one-bedroom flats' own wet zone &#8212; one stack, all four levels. The two bedroom suites are against the rear wall, and they <strong>drain out through the back of the building into an external stack</strong> boxed on the rear face. That is deliberate: it keeps a bathroom pipe out of the bedroom below it, and the rear elevation faces your own 4 ft setback and the garden, so nobody sees it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 3b. ONE-BEDROOM SCHEME ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">03b</span><h2>Level 1 &mdash; two one-bedroom apartments</h2></div>
+    <p class="lede">The floor plate is divided in two about the central stair, so the two flats are mirror images &#8212; identical room for room, 853 ft&#178; each. This is also the layout that settled the stair: its core is the one the whole building now uses, and the two-bedroom floors above were re-planned to sit on it.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="plate" id="tf1b"></div>
+    <div class="stack g24">
+      <div class="sched">
+        <div class="row tot"><span>Both flats, identical</span><span>853 ft&#178; each</span></div>
+        <div class="row"><span>Living / dining</span><span>203 ft&#178;</span></div>
+        <div class="row"><span>Bedroom</span><span>180 ft&#178;</span></div>
+        <div class="row sub"><span>dressing + bath, one suite</span><span>102 ft&#178;</span></div>
+        <div class="row"><span>Kitchen</span><span>153 ft&#178;</span></div>
+        <div class="row"><span>Entry lobby</span><span>48 ft&#178;</span></div>
+        <div class="row"><span>Visitor washroom</span><span>27 ft&#178;</span></div>
+        <div class="row"><span>Utility / laundry</span><span>56 ft&#178;</span></div>
+        <div class="row"><span>Balcony</span><span>84 ft&#178;</span></div>
+        <div class="row tot"><span>Net internal, each</span><span>769 ft&#178;</span></div>
+      </div>
+      <div class="sched">
+        <div class="row tot"><span>Difference between them</span><span>0 ft&#178;</span></div>
+        <div class="row"><span>Every room dimension</span><span>identical</span></div>
+        <div class="row"><span>Unit A living faces</span><span>rear</span></div>
+        <div class="row"><span>Unit B living faces</span><span>street</span></div>
+        <div class="row"><span>On this level</span><span>2 of the 4 flats</span></div>
+      </div>
+      <div class="notebox">
+        <h4>The two flats are the same flat, mirrored</h4>
+        <p>The stair core sits exactly on the middle of the depth, so one flat is a reflection of the other about that line. Every room matches its twin: living 203, bedroom 180, kitchen 153, dressing-and-bath suite 102, utility 56, lobby 48, visitor WC 27, balcony 84. <strong>Difference between the two: zero.</strong> No tenant can stand in their neighbour's flat and feel short-changed.</p>
+      </div>
+      <div class="notebox">
+        <h4>One wet stack for both flats</h4>
+        <p>The main dashed zone runs 39'-8" down the east side: en-suite, kitchen and utility for one flat, then the same three mirrored, with the two utilities back-to-back on the mirror line. One soil pipe and one riser serve all six rooms on every floor. Moving the visitor washrooms to the west wall adds a <strong>second, much smaller stack</strong> in the corner beside the stair, carrying six WCs and nothing else. That is the price of keeping the guest WC away from the kitchen, and it is worth paying &#8212; it is one 4" pipe boxed into a corner, not a second set of runs across the plan.</p>
+      </div>
+      <div class="notebox">
+        <h4>Why front and back, not side by side</h4>
+        <p>Splitting the plate down its length would give two units 14'-10" wide and 62'-8" deep &mdash; a 4:1 tunnel with no light in the middle. Splitting front to back gives two units roughly 30 ft square, each with windows on three sides. The stair sits between them so both front doors open off one landing.</p>
+      </div>
+      <div class="notebox">
+        <h4>How you move through each one</h4>
+        <p>In off the landing into a proper entry lobby. The visitor washroom is immediately left, on its own, and the kitchen door is straight ahead on the right. The living room opens off the lobby through a wide cased opening and runs the west side to the balcony. The bedroom is off the living, with its own en-suite and wardrobe. A utility sits behind the kitchen. Nothing is reached through a bedroom.</p>
+      </div>
+      <div class="notebox">
+        <h4>The central stair is what let the two layouts share one building</h4>
+        <p>This plan only works with the stair on the middle of the depth &#8212; that is what lets two units sit front and back with daylight on three sides each, and it is what makes them a true mirror. A stair must occupy the same footprint on every level, so putting one-bedroom flats on level 1 meant the whole building adopting this core: the car park's stair moved into the middle of the west lane, and the two-bedroom floors were re-planned around a mid-plan entrance. <strong>There is now one stair position and every level uses it.</strong> It cost one covered bay and it fixed two that were landlocked.</p>
+      </div>
+      <div class="notebox">
+        <h4>The visitor washroom is 9 ft from the kitchen</h4>
+        <p>It sat beside the kitchen in the last version, which was wrong &#8212; a guest WC should not share a wall or a doorway with where food is prepared. It is now across the flat on the west wall with the entry lobby between the two. That also gets it a real window instead of a ducted extract fan, and a guest never sets foot past the lobby.</p>
+      </div>
+      <div class="notebox">
+        <h4>The kitchens are the point</h4>
+        <p>153 ft&#178; each, wrapping the utility as an L, with a real window on the east wall and entered off the lobby. In a one-bedroom flat the kitchen is where the tenant actually lives, and a galley off a corridor is what makes a small flat feel small.</p>
+      </div>
+      <div class="notebox">
+        <h4>One door, not two &#8212; dressing straight through to the bathroom</h4>
+        <p>The wardrobe and the bathroom used to be separate rooms with a door each off the bedroom. They are now <strong>one suite behind a single door</strong>: you walk in through the dressing area, hanging on the left, and continue past a partition into the bath and WC. The partition is a 5" block screen that stops 3'-0" short of the far wall, so it divides the wet half from the dry half and gives the WC some privacy from the bedroom door without another leaf to open. Two fewer doors per flat, and the whole thing reads as one room instead of two cupboards.</p>
+      </div>
+      <div class="notebox">
+        <h4>What the utility is for, and why it changed shape</h4>
+        <p>Washing machine, water heater, drying and household storage &#8212; all of it out of the kitchen and off the balcony. It was first drawn 15'-8" long by 3'-10" deep, which is 60 ft&#178; of the right area in entirely the wrong proportion: a washing machine is 2'-0" deep, so that left 1'-10" to stand in. It is now <strong>7'-8" &#215; 7'-4"</strong> in the east corner &#8212; you can walk in and turn round &#8212; and it keeps the perforated-block screen, so washing dries in the shade with air moving through rather than hanging over the street.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:36px"></div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Level</th><th>What is on it</th><th>Flats</th><th>Net internal</th><th>Balcony</th></tr></thead>
+      <tbody>
+        <tr><td>Ground</td><td>Car park, stair, store, rear garden</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td></tr>
+        <tr class="hi"><td>Level 1</td><td>Two one-bedroom flats, mirrored</td><td class="num">2</td><td class="num">769 ft&#178; each</td><td class="num">84 ft&#178; each</td></tr>
+        <tr><td>Level 2</td><td>One two-bedroom apartment</td><td class="num">1</td><td class="num">1,528 ft&#178;</td><td class="num">178 ft&#178;</td></tr>
+        <tr><td>Level 3</td><td>One two-bedroom apartment</td><td class="num">1</td><td class="num">1,528 ft&#178;</td><td class="num">178 ft&#178;</td></tr>
+        <tr><td>Roof</td><td>Terrace, pergola, water tanks</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&mdash;</td></tr>
+        <tr class="hi"><td><strong>Building</strong></td><td>Four flats, six bedrooms</td><td class="num">4</td><td class="num">4,594 ft&#178;</td><td class="num">524 ft&#178;</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="height:20px"></div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>In the whole building</th><th>Count</th><th>Where</th></tr></thead>
+      <tbody>
+        <tr><td>Bedrooms</td><td class="num">6</td><td>2 on level 1, 2 on each of levels 2 and 3 &#8212; every one en-suite</td></tr>
+        <tr><td>Washrooms</td><td class="num">10</td><td>Six en-suites and four visitor washrooms</td></tr>
+        <tr><td>Kitchens</td><td class="num">4</td><td>Two on level 1, one each above</td></tr>
+        <tr><td>Front doors, meters</td><td class="num">4</td><td>All four open off the same landing stack</td></tr>
+        <tr><td>Plumbing stacks</td><td class="num">3</td><td>East strip (all levels), west WC stack (level 1), rear external (levels 2&#8211;3)</td></tr>
+        <tr class="hi"><td>Covered parking bays</td><td class="num">7</td><td>Plus one on the apron &#8212; two cars per flat</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="height:20px"></div>
+  <div class="callout">
+    <h3>Two things this mix changes</h3>
+    <p><strong>The parking finally works out.</strong> Six one-bedroom flats on three floors would have had seven bays between them &#8212; barely one each. Four flats and eight cars is <strong>two per flat</strong>, which on a plot this size is unusual and is worth more to a tenant than another 50 ft&#178; of living room. It is the strongest argument for the mix.</p>
+    <p><strong>Tell the engineer the floors are not identical.</strong> With three repeating floors, internal blockwork stacks and each wall carries straight down. Here it does not: apart from the stair core and the two long external walls, <strong>no internal wall runs continuously from level 1 to level 2</strong>. Level 2's walls land wherever they land, so its slab has to be designed to carry them rather than passing the load to walls below. That is ordinary for a framed building and it is not expensive &#8212; but it has to be said out loud before the slab is designed, because it is the one consequence of mixing layouts that a builder will not spot from the plans.</p>
+  </div>
+</section>
+
+<!-- ===================== 4. ELEVATION ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">04</span><h2>What actually makes it look like that</h2></div>
+    <p class="lede">Six moves, and the overhang strengthens two of them. The undercroft is now genuinely recessed rather than merely dark, and the roof edge does the job the applied brow used to do.</p>
+  </div>
+
+  <div class="sheet">
+    <div class="plate" id="elev"></div>
+    <div class="stack g24">
+      <div class="cards" style="grid-template-columns:1fr">
+        <div class="card"><span class="idx">01 &#8212; the blade</span><h4>One third of the front is a blank wall</h4><p>Full height, no openings, white textured render, 5'-6" wide. It is what makes the building read as tall and calm. Every window you add to it costs you the effect.</p></div>
+        <div class="card"><span class="idx">02 &#8212; the spine</span><h4>A black louvre strip down the facade</h4><p>3'-0" wide, unbroken from the first-floor slab to the roof. It screens the west end of every balcony now that the stair has moved inboard, which is what the reference does too. Below it the vehicle gate uses the same horizontal slat rhythm, so the line reads as continuous to the ground. Matte black steel flats at roughly 2&#189;" centres.</p></div>
+        <div class="card"><span class="idx">03 &#8212; the recess</span><h4>Balconies cut into the mass</h4><p>Set back 6'-2", not bolted on. Clear glass balustrade at 3'-6", slim black top rail, full-height sliding doors behind. A projecting balcony gives the opposite look.</p></div>
+        <div class="card"><span class="idx">04 &#8212; the brow</span><h4>The roof edge is the brow</h4><p>The roof slab projects 2'-0" past the walls all round and its 16" edge is finished black with a warm LED strip underneath. It shades the top floor, which has nothing above it, and it is structure rather than an applied blade.</p></div>
+        <div class="card"><span class="idx">05 &#8212; the void</span><h4>The ground floor is 6 ft back in shadow</h4><p>The overhang does what render never could &#8212; the undercroft is a real recess, permanently in shade, with the mass reading as if it hovers. Seven cars sit in it, nose to tail in three lanes, with the stair and a store in the west lane and nothing else.</p></div>
+        <div class="card"><span class="idx">06 &#8212; one metal</span><h4>Gate, rails, frames, roof edge: same black</h4><p>The vehicle gate uses the same horizontal slat rhythm as the louvre spine above it. One matte black throughout &#8212; no bronze, no grey, no chrome. The two front columns are rendered white so they read as building, not as posts.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 5. SECTION ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">05</span><h2>Long section &#8212; this is the drawing to hand over</h2></div>
+    <p class="lede">Cut through the depth, street on the right. Everything about the scheme is in this one drawing: the stepped build line, the two front columns, the covered apron, the roof overhang, and the single stair core running through all four levels.</p>
+  </div>
+  <div class="plate" id="sect"></div>
+  <div style="height:24px"></div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Level</th><th>Use</th><th>Footprint</th><th>Finished floor</th><th>Clear height</th><th>Floor to floor</th></tr></thead>
+      <tbody>
+        <tr><td>Ground</td><td>Car park, stair, store</td><td class="num">31' &#215; 54'</td><td class="num">+1'-6"</td><td class="num">9'-0"</td><td class="num">9'-10"</td></tr>
+        <tr class="hi"><td>Level 1</td><td>Two one-bedroom flats &#8212; steps out</td><td class="num">31' &#215; 64'</td><td class="num">+11'-4"</td><td class="num">9'-6"</td><td class="num">10'-4"</td></tr>
+        <tr><td>Level 2</td><td>Two-bedroom apartment</td><td class="num">31' &#215; 64'</td><td class="num">+21'-8"</td><td class="num">9'-6"</td><td class="num">10'-4"</td></tr>
+        <tr><td>Level 3</td><td>Two-bedroom apartment</td><td class="num">31' &#215; 64'</td><td class="num">+32'-0"</td><td class="num">9'-6"</td><td class="num">10'-4"</td></tr>
+        <tr><td>Roof</td><td>Terrace, pergola, tanks</td><td class="num">31' &#215; 68'</td><td class="num">+42'-4"</td><td class="num">&#8212;</td><td class="num">&#8212;</td></tr>
+        <tr><td>Parapet</td><td>Top of building</td><td class="num">&#8212;</td><td class="num">+45'-10"</td><td class="num">&#8212;</td><td class="num">3'-6" high</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="height:20px"></div>
+  <div class="callout">
+    <h3>What the engineer needs to size</h3>
+    <p>An edge beam along the new front line at every floor, spanning 19'-3" between the two columns with a 6 ft cantilever past the left one; the 6 ft slab span from the old wall line out to that beam; a 4 ft cantilever at the rear on all three floors; and two pad footings for the new columns. The <em>edge</em> condition repeats on all three floors, so design that once &#8212; but the internal walls do not stack between level 1 and level 2, so each apartment slab must be designed to carry the walls that sit on it.</p>
+  </div>
+</section>
+
+<!-- ===================== 6. DOOR & WINDOW SCHEDULE ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">06</span><h2>Door and window schedule</h2></div>
+    <p class="lede">Sizes and quantities for one two-bedroom floor &#8212; levels 2 and 3, so double them. Level 1 uses the same sizes throughout for its two one-bedroom flats: per flat, one D1, one D2, two D3, one D4, one P1, one SD1 and its share of the windows. Give this to the carpenter and the aluminium fabricator as it stands.</p>
+  </div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Mark</th><th>Item</th><th>Size, w &#215; h</th><th>No. per 2-bed floor</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="num">D1</td><td>Apartment entrance</td><td class="num">3'-0" &#215; 7'-0"</td><td class="num">1</td><td>Solid hardwood, opens inward, security lock and viewer</td></tr>
+        <tr><td class="num">D2</td><td>Bedroom</td><td class="num">3'-0" &#215; 7'-0"</td><td class="num">2</td><td>Flush hardwood, opens into the room</td></tr>
+        <tr><td class="num">D3</td><td>Bedroom suite and visitor washroom</td><td class="num">2'-9" &#215; 7'-0"</td><td class="num">3</td><td>Moisture-resistant, opens inward, privacy lock. One door per suite &#8212; a partition divides dressing from bath inside.</td></tr>
+        <tr><td class="num">D4</td><td>Study, store, pantry, riser, laundry</td><td class="num">2'-6" &#8211; 2'-9" &#215; 7'-0"</td><td class="num">5</td><td>Flush hardwood; laundry and pantry doors louvred at the base</td></tr>
+        <tr><td class="num">P1</td><td>Dressing / bath partition</td><td class="num">5" thick, 5'-0" long</td><td class="num">2</td><td>Block screen, stops 3'-0" short of the rear wall &#8212; a walk-through, not a doorway</td></tr>
+        <tr class="hi"><td class="num">SD1</td><td>Balcony sliding door</td><td class="num">9'-0" &#215; 8'-0"</td><td class="num">1</td><td>Aluminium, two panels, black frame, clear glass</td></tr>
+        <tr><td class="num">W1</td><td>Bedroom, side wall</td><td class="num">9'-0" &#215; 4'-6"</td><td class="num">2</td><td>Sliding aluminium, black frame, with insect screen. One per bedroom &#8212; bedroom 2 west, master east.</td></tr>
+        <tr><td class="num">W2</td><td>Living and study, west wall</td><td class="num">5'-0" &#8211; 6'-0" &#215; 5'-0"</td><td class="num">2</td><td>Sliding aluminium, black frame</td></tr>
+        <tr><td class="num">W3</td><td>Kitchen + dining, east wall</td><td class="num">6'-0" &#215; 4'-0"</td><td class="num">1</td><td>Sliding aluminium, sill 3'-6" over the counter</td></tr>
+        <tr><td class="num">W4</td><td>Corridor, stair, master dressing</td><td class="num">2'-0" &#8211; 6'-0" &#215; 4'-6"</td><td class="num">3</td><td>Sliding or top-hung; the stair one openable top and bottom</td></tr>
+        <tr><td class="num">W5</td><td>Washroom, obscure</td><td class="num">4'-0" &#8211; 6'-0" &#215; 2'-6"</td><td class="num">3</td><td>Top-hung obscure glass, high sill at 5'-6". Two rear baths and the visitor washroom &#8212; none needs an extract fan.</td></tr>
+        <tr><td class="num">SC1</td><td>Laundry screen, east wall</td><td class="num">6'-0" &#215; full height</td><td class="num">1</td><td>Perforated block, no glazing &#8212; the laundry stays open to the air</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="height:20px"></div>
+  <div class="callout">
+    <h3>Two rules the fabricator needs in writing</h3>
+    <p>Every window frame is the same matte black as the louvre screen and the balcony rails &#8212; one colour across the whole building, no exceptions. And every washroom window is obscure glass with the sill at 5'-6", because at this density your neighbour's building will eventually stand where the view is now.</p>
+  </div>
+</section>
+
+<!-- ===================== 7. PARTY WALL ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">07</span><h2>What Plot A is worth</h2></div>
+    <p class="lede">The building drawn here already uses the A / B line as its west wall &#8212; that is where the extra 4 ft came from. Plot A still has 2,990 ft&#178; behind it, and here is what more of it would buy.</p>
+  </div>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Scenario</th><th>Width</th><th>Upper floor</th><th>Apartments</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td><strong>B only, 27 ft</strong><br><span class="muted">the version before you confirmed A</span></td><td class="num">27'-0"</td><td class="num">1,728 ft&#178;</td><td class="num">4</td><td>Leaves 4 ft of your own land empty on the west side of an invisible line.</td></tr>
+        <tr class="hi"><td><strong>On the A / B line</strong><br><span class="muted">drawn here &#183; needs the titles consolidated</span></td><td class="num">31'-0"</td><td class="num">1,984 ft&#178;</td><td class="num">4</td><td>+256 ft&#178; per floor, +768 ft&#178; over the three. Every room wider, and it is what makes two equal one-bedroom flats fit on level 1 at all. No change to structure, stair, services or facade.</td></tr>
+        <tr><td><strong>A + B as one site</strong><br><span class="muted">a different project, not a wider one</span></td><td class="num">up to 61'-0"</td><td class="num">3,904 ft&#178;</td><td class="num">8</td><td>Two large apartments per floor off one stair, one foundation campaign, one roof. Roughly double the lettable area. Needs a fresh massing study before any of these plans apply.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="height:20px"></div>
+  <div class="callout">
+    <h3>Consolidate the titles before you build</h3>
+    <p>Owning both plots is not the same as them being one plot. If A and B stay separately registered, the side setback applies at the A / B line like any other boundary &#8212; so the 31 ft version needs the two titles amalgamated into one. Two other things ride on the same step: site coverage drops from 72% on B alone to 35% across A + B, which matters if your assembly caps it; and the west wall stops being a boundary wall, so it can keep its windows. Start it now &#8212; it is cheap at this stage and awkward once foundations are in.</p>
+  </div>
+</section>
+
+<!-- ===================== 8. MATERIALS ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">08</span><h2>Finishes</h2></div>
+    <p class="lede">Short list on purpose. The reference building uses five materials and repeats them everywhere, which is most of why it looks expensive.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <h4>External walls</h4>
+      <div class="swatchrow"><span class="sw" style="background:#EDEAE3"></span>Off-white textured render</div>
+      <div class="swatchrow"><span class="sw" style="background:#DCD6CB"></span>Split-face light brick on the blade</div>
+      <p class="muted" style="font-size:14px">8" blockwork throughout. The two front columns rendered to match.</p>
+    </div>
+    <div class="card">
+      <h4>Metalwork</h4>
+      <div class="swatchrow"><span class="sw" style="background:#1D2124"></span>Matte black &#8212; louvres, gate, rails, roof edge</div>
+      <div class="swatchrow"><span class="sw" style="background:#2B3033"></span>Black powder-coated window frames</div>
+      <p class="muted" style="font-size:14px">Same black on every metal element without exception.</p>
+    </div>
+    <div class="card">
+      <h4>Timber</h4>
+      <div class="swatchrow"><span class="sw" style="background:#9A6B3F"></span>Hardwood stair treads and internal doors</div>
+      <div class="swatchrow"><span class="sw" style="background:#B08551"></span>Slatted soffit under the front overhang</div>
+      <p class="muted" style="font-size:14px">Line the underside of the overhang in timber slats &#8212; it is the ceiling everyone walks under.</p>
+    </div>
+    <div class="card">
+      <h4>Glass and screens</h4>
+      <div class="swatchrow"><span class="sw" style="background:#C3D0D4"></span>Clear glass balustrades, black top rail</div>
+      <div class="swatchrow"><span class="sw" style="background:#E4E0D7"></span>Perforated block at the laundry screens</div>
+      <p class="muted" style="font-size:14px">Obscure glass in all five washroom windows.</p>
+    </div>
+    <div class="card">
+      <h4>Floors</h4>
+      <div class="swatchrow"><span class="sw" style="background:#B9B5AE"></span>Large grey porcelain tile inside</div>
+      <div class="swatchrow"><span class="sw" style="background:#A5A29B"></span>Brushed concrete or paver in the car park</div>
+      <p class="muted" style="font-size:14px">24" &#215; 24" or bigger, narrow joints. Small tiles read cheap at this scale.</p>
+    </div>
+    <div class="card">
+      <h4>Light</h4>
+      <div class="swatchrow"><span class="sw" style="background:#E8C888"></span>Warm white LED under the roof edge</div>
+      <div class="swatchrow"><span class="sw" style="background:#EBD6A4"></span>Downlights in the overhang soffit</div>
+      <p class="muted" style="font-size:14px">The covered apron needs real light at night &#8212; it is now the entrance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 9. GHANA CHANGES ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">09</span><h2>Eight things to change from the original</h2></div>
+    <p class="lede">The reference is designed for a dry Mexican climate and a Mexican servicing model. These are the departures worth insisting on.</p>
+  </div>
+  <div class="cards">
+    <div class="card"><span class="idx">Rain</span><h4>The overhang changes the drainage</h4><p>Roof at 1:60 minimum &#8212; 2" of fall per 10 ft. But the overhang now throws water 2 ft clear of the wall onto the apron, so the apron must fall away from the building and take a channel along the front. Outlets on the roof, a gully in every laundry, and the rear garden takes a soakaway.</p></div>
+    <div class="card"><span class="idx">Sun</span><h4>The shade is now built in</h4><p>Each floor shades the one below and the roof shades the top floor. If the street faces west, add the louvre screen down that side too &#8212; the overhang handles high sun, not low afternoon sun coming in sideways.</p></div>
+    <div class="card"><span class="idx">Air</span><h4>Cross-ventilate every bedroom</h4><p>On levels 2 and 3 both bedrooms get a side window and a door onto a corridor with its own window, so air crosses the room instead of stalling; the two rear baths take the back wall. On level 1 each flat has windows on three sides. Openable louvres top and bottom of the stair window turn the stair into a chimney.</p></div>
+    <div class="card"><span class="idx">Water</span><h4>Storage the original does not have</h4><p>Underground reservoir under the open part of the apron &#8212; not under the overhang, where you cannot get a tanker hose to it. Pump in the ground-floor service room, poly tanks on a roof platform sized for three days across ten washrooms, and the ground-level store behind the stair is where the pump and the pressure set live.</p></div>
+    <div class="card"><span class="idx">Power</span><h4>Four meters, one riser</h4><p>Separate meter per flat in a lockable ground-floor cupboard &#8212; four, not three, because level 1 has two front doors. One vertical riser beside the stair. Retrofitting this later means chasing finished walls.</p></div>
+    <div class="card"><span class="idx">Waste</span><h4>Decide the drainage now</h4><p>Ten washrooms on three floors is a real load, and there are three stacks to bring together, not one. Sewer connection if the street has one; otherwise size the septic tank and soakaway for ten people, and site it under the open apron where it can be desludged.</p></div>
+    <div class="card"><span class="idx">Security</span><h4>Lock the undercroft</h4><p>The covered apron is inviting at night, which cuts both ways. Sliding vehicle gate at the boundary, a lockable door at the foot of the stair, and light the soffit properly &#8212; the stair is now 20 ft inside the car park, so that lockable door matters more than it did.</p></div>
+    <div class="card"><span class="idx">Roof</span><h4>Use the roof</h4><p>Timber pergola and a barbecue up there. On a plot this size that terrace is the only outdoor space anyone gets &#8212; build it, and run the tank platform and any solar behind it at the rear.</p></div>
+  </div>
+</section>
+
+<!-- ===================== 10. HANDOFF ===================== -->
+<section>
+  <div class="shead">
+    <div class="row"><span class="dwgno">10</span><h2>Take this to your builder</h2></div>
+    <p class="lede">In this order. The first item can invalidate the whole massing, so settle it before anything else is priced.</p>
+  </div>
+  <ul class="check">
+    <li><span class="box"></span><span><strong>Ask whether the setback is measured to the wall or to the projection.</strong> If it is to the projection, the overhang breaks the front setback and we fall back to a 3 ft step or bring the ground floor forward. Everything else waits on this answer.</span></li>
+    <li><span class="box"></span><span><strong>Confirm the setback figures themselves</strong> at the district assembly with your site plan in hand &#8212; front, rear and side.</span></li>
+    <li><span class="box"></span><span><strong>Start consolidating the A and B titles.</strong> The 31 ft width, the west windows and the site-coverage figure all depend on the two plots becoming one. No neighbour's signature needed &#8212; both plots are yours &#8212; but the paperwork is on the critical path.</span></li>
+    <li><span class="box"></span><span><strong>Have the surveyor peg the four corners</strong> before excavation. The boundary here is drawn from your plan of Plot B &#8212; front 34'-8", rear 37'-11", sides 72'-6" and 80'-2" &#8212; but pegs on the ground are what the builder sets out from.</span></li>
+    <li><span class="box"></span><span><strong>Have the engineer design the front edge beam and the two columns</strong> before the ground-floor slab is set out &#8212; the pad footings go in at foundation stage, not later. Tell them at the same time that the internal walls do not stack between level 1 and level 2.</span></li>
+    <li><span class="box"></span><span><strong>Agree the ground floor stays open.</strong> Write it into the contract. This is the item a builder will suggest infilling to "add a shop".</span></li>
+    <li><span class="box"></span><span><strong>Keep the three plumbing stacks where they are.</strong> The east strip carries kitchens, laundries, pantries and the guest washrooms on all four levels; level 1 has a small second stack in the west corner; the two rear bedroom suites on levels 2 and 3 drain out through the back wall into an external stack. Moving any wet room off those lines multiplies the pipework.</span></li>
+    <li><span class="box"></span><span><strong>Fall the apron away from the building</strong> and run a channel along the front &#8212; the overhang sheds its water there.</span></li>
+    <li><span class="box"></span><span><strong>Fix floor-to-floor at 10'-4"</strong> for the apartments and 9'-10" at ground. Do not let it drift down to save a course of blocks.</span></li>
+    <li><span class="box"></span><span><strong>Engage a licensed architect and structural engineer</strong> to turn this into stamped drawings for the permit.</span></li>
+  </ul>
+  <div style="height:26px"></div>
+  <div class="callout">
+    <h3>What this document is, and is not</h3>
+    <p>This is a design-intent drawing set: it fixes the idea, the arrangement and the dimensions so you and your builder are looking at the same building. It is not a construction drawing set and it cannot be submitted for a permit. Structure, reinforcement, drainage runs, electrical layouts and foundation design all sit with a licensed engineer &#8212; and with an overhang carrying three storeys, that is not optional. Areas are calculated from the layouts drawn here rather than measured off a survey.</p>
+    <p>The reference building is <em>Edificio de departamentos en 3 niveles m&#225;s planta baja</em> by EBCH Arquitectura &#8212; an irregular 2,153 ft&#178; site with 28'-6" of frontage. What is reproduced here is the arrangement and the facade language, redrawn for your plot, your two-bedroom brief and your stepped build line. Nothing is traced from their drawings.</p>
+  </div>
+</section>
+
+<footer>
+  <span>Concept study &#183; Plot B, 2,752 ft&#178; as surveyed &#183; two 1-bedroom flats and two 2-bedroom apartments over an open car park &#183; all dimensions in feet and inches</span>
+  <span>For your structural engineer, who will work metric: plot 10.67 &#215; 21.95 m &#183; ground 8.23 &#215; 16.46 m &#183; upper 8.23 &#215; 19.51 m &#183; front overhang 1.83 m &#183; rear overhang 1.22 m &#183; floor to floor 3.15 m &#183; slab 250 mm &#183; columns 230 &#215; 600 mm &#183; blockwork 200 mm.</span>
+  <span>Reference: EBCH Arquitectura, <span class="mono">youtube.com/watch?v=FRsEx3As5C0</span> &#183; 45,000 views &#183; dimensions derived from the published walkthrough, not from issued drawings.</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var S = 8.5; // svg units per FOOT
+
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+
+  function fitSize(n,avail,base,min,cw){
+    if(!n) return 0;
+    if(n*cw*base<=avail) return base;
+    var f=avail/(n*cw);
+    return f<min ? 0 : Math.round(f*10)/10;
+  }
+  function room(x,y,w,h,label,sub,kind){
+    var X=x*S,Y=y*S,W=w*S,H=h*S,k=kind||'room';
+    var o='<rect class="r r-'+k+'" x="'+X+'" y="'+Y+'" width="'+W+'" height="'+H+'"/>';
+    var avail=W-5;
+    var fl=label?fitSize(label.length,avail,8.6,5.4,0.58):0;
+    var fs=(sub&&H>=17)?fitSize(sub.length,avail,7.0,4.8,0.60):0;
+    if(fl) o+='<text class="rl" style="font-size:'+fl+'px" x="'+(X+W/2)+'" y="'+(Y+H/2+(fs?-1.5:3))+'">'+esc(label)+'</text>';
+    if(fs) o+='<text class="rs" style="font-size:'+fs+'px" x="'+(X+W/2)+'" y="'+(Y+H/2+8.5)+'">'+esc(sub)+'</text>';
+    return o;
+  }
+  function dimH(x1,x2,y,txt){
+    var A=x1*S,B=x2*S,Y=y*S;
+    return '<g class="dim"><line x1="'+A+'" y1="'+Y+'" x2="'+B+'" y2="'+Y+'"/>'
+      +'<line x1="'+A+'" y1="'+(Y-4)+'" x2="'+A+'" y2="'+(Y+4)+'"/>'
+      +'<line x1="'+B+'" y1="'+(Y-4)+'" x2="'+B+'" y2="'+(Y+4)+'"/>'
+      +'<text x="'+((A+B)/2)+'" y="'+(Y-7)+'">'+esc(txt)+'</text></g>';
+  }
+  function dimV(y1,y2,x,txt){
+    var A=y1*S,B=y2*S,X=x*S,M=(A+B)/2;
+    return '<g class="dim"><line x1="'+X+'" y1="'+A+'" x2="'+X+'" y2="'+B+'"/>'
+      +'<line x1="'+(X-4)+'" y1="'+A+'" x2="'+(X+4)+'" y2="'+A+'"/>'
+      +'<line x1="'+(X-4)+'" y1="'+B+'" x2="'+(X+4)+'" y2="'+B+'"/>'
+      +'<text x="'+X+'" y="'+M+'" transform="rotate(-90 '+X+' '+M+')" dy="-7">'+esc(txt)+'</text></g>';
+  }
+  function txt(x,y,s,cls,anchor){
+    return '<text class="'+(cls||'note')+'" x="'+(x*S)+'" y="'+(y*S)+'"'+(anchor?' text-anchor="'+anchor+'"':'')+'>'+esc(s)+'</text>';
+  }
+  function put(id,vb,body){
+    var el=document.getElementById(id);
+    if(el) el.innerHTML='<svg viewBox="'+vb+'" class="dwg" role="img" aria-label="architectural drawing">'+body+'</svg>';
+  }
+
+  /* --- door + window symbols --- */
+  function swingArc(hx,hy,len,dx,dy,cx,cy){
+    var HX=hx*S,HY=hy*S,L=len*S;
+    var ex=HX+dx*L, ey=HY+dy*L, sx=HX+cx*L, sy=HY+cy*L;
+    var a1=Math.atan2(cy,cx), a2=Math.atan2(dy,dx), d=a2-a1;
+    while(d>Math.PI)d-=2*Math.PI; while(d<-Math.PI)d+=2*Math.PI;
+    return '<path class="swing" d="M'+sx+','+sy+' A'+L+','+L+' 0 0 '+(d>0?1:0)+' '+ex+','+ey+'"/>'
+         + '<line class="leaf" x1="'+HX+'" y1="'+HY+'" x2="'+ex+'" y2="'+ey+'"/>';
+  }
+  function dH(x,y,len,swing,hinge){
+    var g='<line class="gap" x1="'+(x*S)+'" y1="'+(y*S)+'" x2="'+((x+len)*S)+'" y2="'+(y*S)+'"/>';
+    var hx = hinge==='r' ? x+len : x, cx = hinge==='r' ? -1 : 1;
+    return g + swingArc(hx,y,len,0,swing,cx,0);
+  }
+  function dV(x,y,len,swing,hinge){
+    var g='<line class="gap" x1="'+(x*S)+'" y1="'+(y*S)+'" x2="'+(x*S)+'" y2="'+((y+len)*S)+'"/>';
+    var hy = hinge==='b' ? y+len : y, cy = hinge==='b' ? -1 : 1;
+    return g + swingArc(x,hy,len,swing,0,0,cy);
+  }
+  function openH(x,y,len){
+    return '<line class="gap" x1="'+(x*S)+'" y1="'+(y*S)+'" x2="'+((x+len)*S)+'" y2="'+(y*S)+'"/>'
+      +'<line class="cased" x1="'+(x*S)+'" y1="'+((y-0.3)*S)+'" x2="'+(x*S)+'" y2="'+((y+0.3)*S)+'"/>'
+      +'<line class="cased" x1="'+((x+len)*S)+'" y1="'+((y-0.3)*S)+'" x2="'+((x+len)*S)+'" y2="'+((y+0.3)*S)+'"/>';
+  }
+  function openV(x,y,len){
+    return '<line class="gap" x1="'+(x*S)+'" y1="'+(y*S)+'" x2="'+(x*S)+'" y2="'+((y+len)*S)+'"/>'
+      +'<line class="cased" x1="'+((x-0.3)*S)+'" y1="'+(y*S)+'" x2="'+((x+0.3)*S)+'" y2="'+(y*S)+'"/>'
+      +'<line class="cased" x1="'+((x-0.3)*S)+'" y1="'+((y+len)*S)+'" x2="'+((x+0.3)*S)+'" y2="'+((y+len)*S)+'"/>';
+  }
+  function slideH(x,y,len){
+    return '<line class="gap" x1="'+(x*S)+'" y1="'+(y*S)+'" x2="'+((x+len)*S)+'" y2="'+(y*S)+'"/>'
+      +'<line class="slide" x1="'+(x*S)+'" y1="'+((y-0.28)*S)+'" x2="'+((x+len*0.55)*S)+'" y2="'+((y-0.28)*S)+'"/>'
+      +'<line class="slide" x1="'+((x+len*0.45)*S)+'" y1="'+((y+0.28)*S)+'" x2="'+((x+len)*S)+'" y2="'+((y+0.28)*S)+'"/>';
+  }
+  function winV(wallX,y0,len){
+    return '<rect class="win" x="'+(wallX*S)+'" y="'+(y0*S)+'" width="'+(t*S)+'" height="'+(len*S)+'"/>'
+      +'<line class="winline" x1="'+((wallX+t/2)*S)+'" y1="'+(y0*S)+'" x2="'+((wallX+t/2)*S)+'" y2="'+((y0+len)*S)+'"/>';
+  }
+  function winH(x0,wallY,len){
+    return '<rect class="win" x="'+(x0*S)+'" y="'+(wallY*S)+'" width="'+(len*S)+'" height="'+(t*S)+'"/>'
+      +'<line class="winline" x1="'+(x0*S)+'" y1="'+((wallY+t/2)*S)+'" x2="'+((x0+len)*S)+'" y2="'+((wallY+t/2)*S)+'"/>';
+  }
+  function celosiaV(wallX,y0,len){
+    var o='<rect class="win" x="'+(wallX*S)+'" y="'+(y0*S)+'" width="'+(t*S)+'" height="'+(len*S)+'"/>';
+    var n=Math.round(len/0.9);
+    for(var i=1;i<n;i++) o+='<line class="winline" x1="'+(wallX*S)+'" y1="'+((y0+i*len/n)*S)+'" x2="'+((wallX+t)*S)+'" y2="'+((y0+i*len/n)*S)+'"/>';
+    return o;
+  }
+
+  /* ---------- geometry, all in FEET ---------- */
+  var PW=35, PD=72;
+  // Plot B as surveyed: front 34'-8", rear 37'-11", east side 72'-6", west side (A/B line) 80'-2".
+  // Drawn with the building set out square and the boundary leaning around it, as it is on the ground.
+  var PLOT=[[0.17,72.00],[34.84,72.00],[36.22,-0.28],[-0.90,-8.16]];
+  function plotPath(sc){sc=sc||S;var d='';for(var i=0;i<PLOT.length;i++){d+=(i?' L':'M')+(PLOT[i][0]*sc)+','+(PLOT[i][1]*sc);}return d+' Z';}
+  function plotOutline(sc){return '<path class="site" d="'+plotPath(sc)+'"/>';}
+  // Plot A, also Elliott's. The A/B line is internal once the titles are consolidated.
+  var PLOTA=[[-34.53,72.00],[0.17,72.00],[-0.90,-8.16],[-38.01,-15.83]];
+  function plotAOutline(sc){sc=sc||S;var d='';for(var i=0;i<PLOTA.length;i++){d+=(i?' L':'M')+(PLOTA[i][0]*sc)+','+(PLOTA[i][1]*sc);}
+    return '<path d="'+d+' Z" fill="var(--olive)" opacity=".07" stroke="var(--ink3)" stroke-width=".8" stroke-dasharray="9 4 2 4"/>';}
+  var t=0.667;
+  // ground floor: 10 front / 8 rear / 4 sides
+  var GX=0, GY=8, GW=31, GD=54;
+  var GIX=GX+t, GIY=GY+t, GIW=GW-2*t, GID=GD-2*t;      // 25.67 x 52.67
+  // upper floors: 4 all round
+  var UX=0, UY=4, UW=31, UD=64;
+  var IX=UX+t, IY=UY+t, IW=UW-2*t, ID=UD-2*t;          // 25.67 x 62.67
+  // roof: 2 ft past the upper walls
+  var RX=-2, RY=2, RW=35, RD=68;
+  // new front columns (9" x 24"), plot coords
+  var COL=[4.46, 29.58], COLY=66.0, COLW=0.75, COLD=2.0;
+
+  /* ---------- 00 : massing comparison ---------- */
+  (function(){
+    var s=6.2, o='';
+    function px(v){return v*s;}
+    // plot
+    o+=plotAOutline(s);
+    o+=plotOutline(s);
+    o+='<text class="rs" x="'+px(-17)+'" y="'+px(34)+'" text-anchor="middle">PLOT A</text>';
+    o+='<text class="rs" x="'+px(-17)+'" y="'+px(38)+'" text-anchor="middle">also yours</text>';
+    // shaded ground = area under the overhang
+    o+='<rect class="r-shade" x="'+px(UX)+'" y="'+px(UY)+'" width="'+px(UW)+'" height="'+px(GY-UY)+'"/>';
+    o+='<rect class="r-shade" x="'+px(UX)+'" y="'+px(GY+GD)+'" width="'+px(UW)+'" height="'+px((UY+UD)-(GY+GD))+'"/>';
+    // ground footprint
+    o+='<rect x="'+px(GX)+'" y="'+px(GY)+'" width="'+px(GW)+'" height="'+px(GD)+'" fill="var(--wash)" stroke="var(--ink)" stroke-width="1.8"/>';
+    o+='<text class="rl" x="'+px(GX+GW/2)+'" y="'+px(GY+GD/2-1.5)+'">GROUND FLOOR</text>';
+    o+='<text class="rs" x="'+px(GX+GW/2)+'" y="'+px(GY+GD/2+1.6)+'">27\' x 54\' - 1,458 ft2</text>';
+    // upper footprint
+    o+='<rect class="over" x="'+px(UX)+'" y="'+px(UY)+'" width="'+px(UW)+'" height="'+px(UD)+'"/>';
+    o+='<text class="rs" style="fill:var(--dim)" x="'+px(UX+UW/2)+'" y="'+px(UY+13.5)+'">FLOORS 1-3   27\' x 64\'   1,728 ft2</text>';
+    // columns
+    for(var i=0;i<COL.length;i++) o+='<rect class="newcol" x="'+px(COL[i])+'" y="'+px(COLY)+'" width="'+px(COLW)+'" height="'+px(COLD)+'"/>';
+    // overhang dims
+    o+='<g class="dim"><line x1="'+px(PW+1.5)+'" y1="'+px(UY)+'" x2="'+px(PW+1.5)+'" y2="'+px(GY)+'"/>'
+      +'<line x1="'+(px(PW+1.5)-4)+'" y1="'+px(UY)+'" x2="'+(px(PW+1.5)+4)+'" y2="'+px(UY)+'"/>'
+      +'<line x1="'+(px(PW+1.5)-4)+'" y1="'+px(GY)+'" x2="'+(px(PW+1.5)+4)+'" y2="'+px(GY)+'"/>'
+      +'<text x="'+px(PW+4.6)+'" y="'+px(UY+2.9)+'">4\'-0"</text></g>';
+    o+='<g class="dim"><line x1="'+px(PW+1.5)+'" y1="'+px(GY+GD)+'" x2="'+px(PW+1.5)+'" y2="'+px(UY+UD)+'"/>'
+      +'<line x1="'+(px(PW+1.5)-4)+'" y1="'+px(GY+GD)+'" x2="'+(px(PW+1.5)+4)+'" y2="'+px(GY+GD)+'"/>'
+      +'<line x1="'+(px(PW+1.5)-4)+'" y1="'+px(UY+UD)+'" x2="'+(px(PW+1.5)+4)+'" y2="'+px(UY+UD)+'"/>'
+      +'<text x="'+px(PW+4.6)+'" y="'+px(GY+GD+4.0)+'">6\'-0"</text></g>';
+    o+='<text class="rs" style="fill:var(--dim)" x="'+px(PW/2)+'" y="'+px(GY-1.4)+'">rear overhang - shaded</text>';
+    o+='<text class="rs" style="fill:var(--dim)" x="'+px(PW/2)+'" y="'+px(GY+GD+4.2)+'">front overhang - shaded drop-off</text>';
+    o+='<text class="note" x="'+px(PW/2)+'" y="'+px(PD+3.2)+'" text-anchor="middle">S T R E E T</text>';
+    put('cmp','-'+(px(41))+' -114 '+(px(PW+48)+150)+' '+(px(PD)+150),o);
+  })();
+
+  /* ---------- 01 : site plan ---------- */
+  (function(){
+    var o='';
+    o+=plotAOutline();
+    o+=plotOutline();
+    o+=txt(-17,34,'PLOT A - also yours','rs','middle');
+    o+=txt(-17,37.5,'2,990 ft2','rs','middle');
+    // shaded strips
+    o+='<rect class="r-shade" x="'+(UX*S)+'" y="'+(UY*S)+'" width="'+(UW*S)+'" height="'+((GY-UY)*S)+'"/>';
+    o+='<rect class="r-shade" x="'+(UX*S)+'" y="'+((GY+GD)*S)+'" width="'+(UW*S)+'" height="'+(((UY+UD)-(GY+GD))*S)+'"/>';
+    // apron
+    o+='<rect x="'+(GX*S)+'" y="'+((GY+GD)*S)+'" width="'+(GW*S)+'" height="'+(10*S)+'" fill="var(--void)" opacity=".7" stroke="var(--rule)" stroke-width=".8"/>';
+    // ground footprint
+    o+='<rect x="'+(GX*S)+'" y="'+(GY*S)+'" width="'+(GW*S)+'" height="'+(GD*S)+'" fill="var(--wash)" stroke="var(--ink)" stroke-width="2"/>';
+    o+=txt(GX+GW/2,GY+GD/2-1.6,'GROUND FLOOR','rl','middle');
+    o+=txt(GX+GW/2,GY+GD/2+1.2,'27\'-0" x 54\'-0"','rs','middle');
+    o+=txt(GX+GW/2,GY+GD/2+3.8,'1,458 ft2','rs','middle');
+    // upper build line + roof line
+    o+='<rect class="over" x="'+(UX*S)+'" y="'+(UY*S)+'" width="'+(UW*S)+'" height="'+(UD*S)+'"/>';
+    o+='<rect class="roofline" x="'+(RX*S)+'" y="'+(RY*S)+'" width="'+(RW*S)+'" height="'+(RD*S)+'"/>';
+    o+=txt(UX+UW/2,UY+3.0,'FLOORS 1-3  27\'-0" x 64\'-0"  1,728 ft2','rs','middle');
+    o+=txt(RX+RW/2,RY-1.4,'roof overhang 2\'-0" all round','rs','middle');
+    // columns
+    for(var i=0;i<COL.length;i++) o+='<rect class="newcol" x="'+(COL[i]*S)+'" y="'+(COLY*S)+'" width="'+(COLW*S)+'" height="'+(COLD*S)+'"/>';
+    o+=txt(20.0,COLY+3.4,'two new columns carry the front overhang','rs','middle');
+    // dims
+    o+=dimH(GX,GX+GW,-6.6,'31\'-0"');
+    o+=txt(15,-11.4,'PLOT B BOUNDARY, AS SURVEYED','rl','middle');
+    o+=txt(15,-9.0,'front 34\'-8"   rear 37\'-11"   east 72\'-6"   west 80\'-2"','rs','middle');
+    o+=txt(-6.5,20.0,'west wall runs','rs','middle');
+    o+=txt(-6.5,22.4,'along the A / B line','rs','middle');
+    o+=txt(34.0,26.0,'east setback','rs','middle');
+    o+=txt(34.0,28.4,'3\'-11" to 5\'-2"','rs','middle');
+    o+=dimV(UY,GY,PW+7.4,'4\'-0"');
+    o+=dimV(GY,GY+GD,PW+3.2,'54\'-0"');
+    o+=dimV(GY+GD,UY+UD,PW+7.4,'6\'-0"');
+    o+=dimV(UY+UD,PD,PW+7.4,'4\'-0"');
+    o+=dimV(UY,UY+UD,PW+11.6,'64\'-0"');
+    o+=dimV(0,PD,PW+16.0,'72\'-0"');
+    o+='<g transform="translate('+(-5.2*S)+','+(5.2*S)+')"><line class="arrow" x1="0" y1="14" x2="0" y2="-14"/><path class="metal" d="M0,-18 L4,-8 L-4,-8 Z"/><text class="note" x="0" y="26" text-anchor="middle">N</text></g>';
+    o+='<line x1="'+((PLOT[0][0]-1.5)*S)+'" y1="'+(PD*S+10)+'" x2="'+((PLOT[1][0]+1.5)*S)+'" y2="'+(PD*S+10)+'" stroke="var(--ink)" stroke-width="2.5"/>';
+    o+=txt(PW/2,PD+4.4,'S T R E E T','rs','middle');
+    put('site','-'+(41*S)+' -152 '+((PW+49)*S+280)+' '+(PD*S+244),o);
+  })();
+
+  /* ---------- 02 : ground floor ---------- */
+  (function(){
+    var o='';
+    o+=plotOutline();
+    // shaded strips under the overhang
+    o+='<rect class="r-shade" x="'+(UX*S)+'" y="'+(UY*S)+'" width="'+(UW*S)+'" height="'+((GY-UY)*S)+'"/>';
+    o+='<rect class="r-shade" x="'+(UX*S)+'" y="'+((GY+GD)*S)+'" width="'+(UW*S)+'" height="'+(((UY+UD)-(GY+GD))*S)+'"/>';
+    // apron
+    o+='<rect x="'+(GX*S)+'" y="'+((GY+GD)*S)+'" width="'+(GW*S)+'" height="'+(10*S)+'" fill="var(--void)" opacity=".55" stroke="var(--rule)" stroke-width=".8"/>';
+    o+=room(GX+9.5,GY+GD+1.0,16.0,6.5,'','','car');
+    o+=txt(GX+17.5,GY+GD+8.9,'1 car, parked lengthways','rs','middle');
+    o+=txt(GX+22.0,GY+GD+3.4,'COVERED APRON','rl','middle');
+
+    o+='<rect class="wall" x="'+(GX*S)+'" y="'+(GY*S)+'" width="'+(GW*S)+'" height="'+(GD*S)+'"/>';
+    o+='<rect x="'+(GIX*S)+'" y="'+(GIY*S)+'" width="'+(GIW*S)+'" height="'+(GID*S)+'" fill="var(--surface)"/>';
+
+    var GDN=6.0, P0=GIY+GDN;                     // small rear garden, then parking to the street
+    var LW1=9.83, LW2=9.92, LW3=9.92;            // three lanes
+    var LX1=GIX, LX2=GIX+LW1, LX3=GIX+LW1+LW2;
+    var SC0=GIY+21.835, SCD=11.0;                // stair, mid-plan west - the one position both schemes can share
+    /* small rear garden */
+    o+=room(GIX,GIY,GIW,GDN,'REAR GARDEN','178 ft2','green');
+    /* west lane: store behind the stair, one long bay in front of it */
+    o+=room(LX1,P0,LW1,SC0-P0,'STORE','156 ft2','wet');
+    o+=txt(LX1+LW1/2,P0+12.2,'bins, water tanks,','rs','middle');
+    o+=txt(LX1+LW1/2,P0+13.5,'tenant lockers','rs','middle');
+    o+=room(LX1,SC0,LW1,SCD,'','','core');
+    o+=txt(LX1+LW1/2,SC0+3.4,'STAIR + LOBBY','rl','middle');
+    o+=txt(LX1+LW1/2,SC0+4.9,'108 ft2','rs','middle');
+    o+=txt(LX1+LW1/2,SC0+6.2,'meters + pump understair','rs','middle');
+    (function(){var y0=SC0+7.4,x0=LX1+1.2,w=7.4;for(var i=0;i<4;i++){o+='<line class="stair" x1="'+(x0*S)+'" y1="'+((y0+i*1.0)*S)+'" x2="'+((x0+w)*S)+'" y2="'+((y0+i*1.0)*S)+'"/>';}})();
+    o+=room(LX1,SC0+SCD,LW1,(GIY+GID)-(SC0+SCD),'BAY 1','9\'-10" x 19\'-10"','car');
+    /* middle and east lanes: three bays each, nose to tail */
+    for(var ln=0;ln<2;ln++){
+      var lx=(ln?LX3:LX2), lw=(ln?LW3:LW2);
+      for(var bb=0;bb<3;bb++){
+        o+=room(lx,P0+bb*15.556,lw,15.556,'BAY '+(2+ln*3+bb),'9\'-11" x 15\'-7"','car');
+      }
+    }
+    /* drive direction */
+    for(var ar=0;ar<3;ar++){
+      var axx=GIX+4.9+ar*9.9;
+      o+='<path class="arrow" d="M'+(axx*S)+','+((PD-8.5)*S)+' L'+(axx*S)+','+((PD-3.4)*S)+'"/>';
+      o+='<path class="metal" d="M'+(axx*S)+','+((PD-2.0)*S)+' l5,-10 l-10,0 Z"/>';
+    }
+
+    // doors + windows
+    o+=winV(GX,SC0+2.5,6.0);                        // stair side window
+    o+=winH(GIX+3.0,GY,5.0);                        // garden gets light past the rear wall
+    o+=winH(GIX+18.0,GY,7.0);
+    o+='<line class="gap" x1="'+((LX1+2.4)*S)+'" y1="'+((GY+GD)*S)+'" x2="'+((LX1+5.5)*S)+'" y2="'+((GY+GD)*S)+'"/>';
+    o+=swingArc(LX1+2.4,GY+GD,3.1,0,1,1,0);
+    o+=txt(LX1+4.0,PD+1.2,'pedestrian entry','rs','middle');
+
+    // internal columns
+    var cx=[GX+0.3, LX2-0.375, LX3-0.375, GX+GW-1.05];
+    var cy=[GIY-0.3, P0-1.0, GIY+22.0, GIY+38.0, GIY+GID-2.0];
+    for(var i=0;i<cx.length;i++)for(var j=0;j<cy.length;j++)
+      o+='<rect class="col" x="'+(cx[i]*S)+'" y="'+(cy[j]*S)+'" width="'+(0.75*S)+'" height="'+(2.0*S)+'"/>';
+    // the two new front columns
+    for(var k=0;k<COL.length;k++) o+='<rect class="newcol" x="'+(COL[k]*S)+'" y="'+(COLY*S)+'" width="'+(COLW*S)+'" height="'+(COLD*S)+'"/>';
+
+    // build lines above
+    o+='<rect class="over" x="'+(UX*S)+'" y="'+(UY*S)+'" width="'+(UW*S)+'" height="'+(UD*S)+'"/>';
+    o+=txt(UX+UW/2,UY+2.6,'line of floors above','rs','middle');
+
+    // vehicle gate
+    for(var g=0;g<7;g++) o+='<line x1="'+((GIX+5.2)*S)+'" y1="'+((PD-1.8+g*0.3)*S)+'" x2="'+((GIX+GIW)*S)+'" y2="'+((PD-1.8+g*0.3)*S)+'" stroke="var(--steel)" stroke-width="1.4"/>';
+    o+=txt(GIX+17,PD+3.2,'sliding vehicle gate - 24\'-5" clear','rs','middle');
+
+    o+=dimH(LX1,LX2,-3.0,'9\'-10"');
+    o+=dimH(LX2,LX3,-3.0,'9\'-11"');
+    o+=dimH(LX3,GIX+GIW,-3.0,'9\'-11"');
+    o+=dimH(GX,GX+GW,-6.6,'31\'-0"');
+    o+=dimV(GIY,P0,PW+3.0,'6\'-0"');
+    o+=dimV(P0,SC0,PW+3.0,'15\'-10"');
+    o+=dimV(SC0,SC0+SCD,PW+3.0,'11\'-0"');
+    o+=dimV(SC0+SCD,GIY+GID,PW+3.0,'19\'-10"');
+    o+=dimV(GY+GD,UY+UD,PW+7.4,'6\'-0"');
+    o+=dimV(UY+UD,PD,PW+7.4,'4\'-0"');
+    o+=txt(PW/2,PD+6.9,'S T R E E T','rs','middle');
+    put('gf','-100 -80 '+(PW*S+230)+' '+(PD*S+185),o);
+  })();
+
+  /* ---------- 03 : two-bedroom floor, levels 2 + 3 ---------- */
+  (function(){
+    var o='';
+    o+=plotOutline();
+    // ground-floor outline behind, for reference
+    o+='<rect class="roofline" x="'+(GX*S)+'" y="'+(GY*S)+'" width="'+(GW*S)+'" height="'+(GD*S)+'"/>';
+    o+='<rect class="wall" x="'+(UX*S)+'" y="'+(UY*S)+'" width="'+(UW*S)+'" height="'+(UD*S)+'"/>';
+    o+='<rect x="'+(IX*S)+'" y="'+(IY*S)+'" width="'+(IW*S)+'" height="'+(ID*S)+'" fill="var(--surface)"/>';
+
+    var MIDA=IY+31.335;                       // the same centre line Scheme B uses - the stair stacks
+    var C0=MIDA-5.5, C1=MIDA+5.5;             // core band, 11'-0"
+    var A3=C0-3.5;                            // corridor, 3'-6"
+    var A2=IY+8.0;                            // suites, 8'-0" deep
+    var A6=C1+9.0;                            // kitchen-dining / study row, 9'-0"
+    var A7=A6+10.833;                         // living, 10'-10"
+    var XP=IX+11.833;                         // bedroom party wall
+
+    /* band 1 : the two suites, hard against the rear wall, 8'-0" deep */
+    o+=room(IX,     IY, 11.833, 8.0, '','','wet');
+    o+=room(XP,     IY, 17.833, 8.0, '','','wet');
+    o+=txt(IX+2.42,  IY+3.4,'DRESSING','rl','middle');   o+=txt(IX+2.42,  IY+4.7,'39 ft2','rs','middle');
+    o+=txt(IX+8.33,  IY+3.4,'BATH / WC','rl','middle');  o+=txt(IX+8.33,  IY+4.7,'56 ft2','rs','middle');
+    o+=txt(IX+16.83, IY+3.4,'BATH / WC','rl','middle');  o+=txt(IX+16.83, IY+4.7,'80 ft2','rs','middle');
+    o+=txt(IX+25.75, IY+3.4,'DRESSING','rl','middle');   o+=txt(IX+25.75, IY+4.7,'63 ft2','rs','middle');
+    /* the two walk-through partitions - stop 3'-0" short of the rear wall, no second door */
+    (function(){
+      var pw=0.42, pl=5.0, px=[IX+4.833, IX+21.833];
+      for(var i=0;i<px.length;i++)
+        o+='<rect class="wall" x="'+((px[i]-pw/2)*S)+'" y="'+((IY+3.0)*S)+'" width="'+(pw*S)+'" height="'+(pl*S)+'"/>';
+    })();
+
+    /* band 2 : bedrooms, 14'-4" */
+    o+=room(IX,  A2, 11.833, 14.335, 'BEDROOM 2','170 ft2','room');
+    o+=room(XP,  A2, 17.833, 14.335, 'MASTER BEDROOM','256 ft2','room');
+
+    /* band 3 : the corridor, only as long as it needs to be */
+    o+=room(IX,        A3, 20.0,  3.5, '','','core');
+    o+=txt(IX+8.0, A3+2.2,'C O R R I D O R  -  70 ft2','rs','middle');
+    o+=room(IX+20.0,   A3, 9.667, 3.5, 'STORE','34 ft2','wet');
+
+    /* band 4 : core - stair, landing, L-shaped hall, services */
+    o+=room(IX,      C0, 8.5,   11.0, '','','core');
+    o+=txt(IX+4.25, C0+4.6,'STAIR','rl','middle');
+    o+=txt(IX+4.25, C0+6.1,'94 ft2','rs','middle');
+    (function(){var y0=C0+1.4,x0=IX+1.0,w=6.5;for(var i=0;i<9;i++){o+='<line class="stair" x1="'+(x0*S)+'" y1="'+((y0+i*1.05)*S)+'" x2="'+((x0+w)*S)+'" y2="'+((y0+i*1.05)*S)+'"/>';}})();
+    o+=room(IX+8.5,  C0, 5.5,   11.0, '','','core');
+    o+='<text class="rs" transform="rotate(-90 '+((IX+11.25)*S)+' '+(MIDA*S)+')" x="'+((IX+11.25)*S)+'" y="'+(MIDA*S)+'" text-anchor="middle">LANDING</text>';
+    o+=room(IX+14.0, C0, 6.333, 11.0, '','','core');
+    o+=txt(IX+17.2, C0+4.6,'ENTRANCE','rl','middle');
+    o+=txt(IX+17.2, C0+6.1,'HALL - 83 ft2','rs','middle');
+    o+=room(IX+20.333, C0,       4.5,   3.0, '','','core');            // the hall's spur to the guest WC
+    o+=room(IX+20.333, C0+3.0,   4.5,   8.0, 'PANTRY','36 ft2','wet');
+    o+=room(IX+24.833, C0,       4.833, 6.0, 'VISITOR','WC - 29 ft2','wet');
+    o+=room(IX+24.833, C0+6.0,   4.833, 5.0, 'RISER','24 ft2','wet');
+    /* erase the line the spur opens through, so the hall reads as one L-shaped room */
+    o+='<line x1="'+((IX+20.333)*S)+'" y1="'+(C0*S)+'" x2="'+((IX+20.333)*S)+'" y2="'+((C0+3.0)*S)+'" stroke="var(--wash)" stroke-width="1.8"/>';
+
+    /* band 5 : study, then the eat-in kitchen across the whole east side */
+    o+=room(IX,      C1, 9.333,  9.0, 'STUDY','84 ft2','room');
+    o+=room(IX+9.333,C1, 20.333, 9.0, 'KITCHEN + DINING','183 ft2','wet');
+
+    /* band 6 : living + laundry, then the balcony */
+    o+=room(IX,       A6, 24.0,  10.833,'LIVING','260 ft2','room');
+    o+=room(IX+24.0,  A6, 5.667, 10.833,'LAUNDRY','61 ft2','green');
+    o+=room(IX,       A7, IW,    5.998,'BALCONY','178 ft2','open');
+
+    /* doors */
+    o+=dV(IX+14.0, C0+2.6, 3.0,  1, 't');              // D1 apartment entrance, off the landing
+    o+=dH(IX+2.5,  A3,     3.0, -1, 'l');              // D2 bedroom 2, off the corridor
+    o+=dH(IX+14.5, A3,     3.0, -1, 'l');              // D2 master, off the corridor
+    o+=dV(IX+20.0, A3+0.4, 2.5,  1, 't');              // D4 store, off the corridor
+    o+=dH(IX+1.2,  A2,     2.75,-1, 'l');              // bedroom 2 -> its suite, one door
+    o+=dH(IX+23.6, A2,     2.75,-1, 'l');              // master -> its suite, one door
+    o+=dV(IX+24.833, C0+0.3, 2.5, 1, 't');             // D3 visitor wc, off the hall spur
+    o+=dH(IX+21.4, C1,     2.75,-1, 'l');              // D4 pantry, opens off the kitchen
+    o+=dH(IX+26.0, C1,     2.5, -1, 'l');              // D4 riser cupboard, off the kitchen
+    o+=dV(IX+9.333,C1+1.6, 2.75,-1, 't');              // D4 study
+    o+=dH(IX+24.9, A6,     2.75, 1, 'l');              // D4 laundry, off the kitchen
+    o+=openH(IX+15.0, C1, 4.5);                        // hall -> kitchen / dining
+    o+=openH(IX+11.0, A6, 8.0);                        // kitchen / dining -> living
+    o+=slideH(IX+9.5, A7, 9.0);                        // SD1 balcony
+
+    /* windows - every room a person sits in has one */
+    o+=winH(IX+6.0,  UY, 5.0);                         // bedroom 2's bath, rear
+    o+=winH(IX+14.5, UY, 6.0);                         // master bath, rear
+    o+=winV(UX, A2+2.5, 9.0);                          // bedroom 2, west
+    o+=winV(UX, A3+0.75, 2.0);                         // corridor, west - a lit spine
+    o+=winV(UX, C0+2.5, 6.0);                          // stair, west
+    o+=winV(UX, C1+2.0, 5.0);                          // study, west
+    o+=winV(UX, A6+2.2, 6.0);                          // living, west
+    o+=winV(IX+IW, IY+2.0, 4.0);                       // master dressing, east
+    o+=winV(IX+IW, A2+2.5, 9.0);                       // master bedroom, east
+    o+=winV(IX+IW, C0+1.0, 4.0);                       // visitor wc, east - a real window
+    o+=winV(IX+IW, C1+1.5, 6.0);                       // kitchen / dining, east
+    o+=celosiaV(IX+IW, A6+2.5, 6.0);                   // laundry screen, east
+
+    /* the east wet stack, shared with the one-bedroom floor below */
+    o+='<rect x="'+((IX+24.0)*S)+'" y="'+(C0*S)+'" width="'+((IW-24.0)*S)+'" height="'+((A7-C0)*S)+'" fill="none" stroke="var(--dim)" stroke-width="1.4" stroke-dasharray="6 4"/>';
+    o+='<text class="rs" style="fill:var(--dim)" transform="rotate(-90 '+((IX+IW+2.4)*S)+' '+((C0+A7)/2*S)+')" x="'+((IX+IW+2.4)*S)+'" y="'+((C0+A7)/2*S)+'" text-anchor="middle">EAST WET STACK - ALL FLOORS</text>';
+    /* the two rear baths drain out through the back wall */
+    o+='<rect x="'+(IX*S)+'" y="'+(IY*S)+'" width="'+(IW*S)+'" height="'+(8.0*S)+'" fill="none" stroke="var(--dim)" stroke-width="1.2" stroke-dasharray="4 3"/>';
+    o+=txt(IX+13.0, UY-1.6,'both rear baths drain through the back wall - external stack','rs','middle');
+
+    /* balustrade + screen */
+    o+='<rect x="'+(IX*S)+'" y="'+((UY+UD-t)*S)+'" width="'+(29.67*S)+'" height="'+(t*S)+'" fill="var(--glass)" stroke="var(--steel)" stroke-width=".6"/>';
+    o+=txt(IX+21.0, UY+UD+2.0,'glass balustrade, full width','rs','middle');
+    for(var g=0;g<8;g++) o+='<line x1="'+((5.6+g*0.4)*S)+'" y1="'+((UY+UD-0.3)*S)+'" x2="'+((5.6+g*0.4)*S)+'" y2="'+((UY+UD+1.8)*S)+'" stroke="var(--steel)" stroke-width="1.5"/>';
+    o+=txt(7.0, UY+UD+4.0,'louvre screen','rs','middle');
+    /* columns below, dashed */
+    for(var k=0;k<COL.length;k++) o+='<rect x="'+(COL[k]*S)+'" y="'+(COLY*S)+'" width="'+(COLW*S)+'" height="'+(COLD*S)+'" fill="none" stroke="var(--dim)" stroke-width=".9" stroke-dasharray="3 2"/>';
+
+    /* dims */
+    o+=dimH(IX,XP,-3.0,'11\'-10"');
+    o+=dimH(XP,IX+IW,-3.0,'17\'-10"');
+    o+=dimH(UX,UX+UW,-6.6,'31\'-0"');
+    o+=dimV(IY,A2,PW+3.0,'8\'-0"');
+    o+=dimV(A2,A3,PW+3.0,'14\'-4"');
+    o+=dimV(A3,C0,PW+3.0,'3\'-6"');
+    o+=dimV(C0,C1,PW+3.0,'11\'-0"');
+    o+=dimV(C1,A6,PW+3.0,'9\'-0"');
+    o+=dimV(A6,A7,PW+3.0,'10\'-10"');
+    o+=dimV(A7,IY+ID,PW+3.0,'6\'-0"');
+    o+=dimV(UY,UY+UD,PW+7.6,'64\'-0"');
+    o+=txt(PW/2,PD+1.3,'S T R E E T','rs','middle');
+    put('tf','-100 -80 '+(PW*S+210)+' '+(PD*S+150),o);
+  })();
+
+  /* ---------- 03b : one-bedroom floor, two identical units ---------- */
+  (function(){
+    var o='';
+    var MID=IY+31.335, CW=14.0, CD=11.0;
+    var CY0=MID-CD/2, CY1=MID+CD/2;
+    var EW=IW-CW;                                  // east column width, 15'-8"
+    function mir(y,h){ return 2*MID-(y+h); }       // mirror a band about the core centre
+    function pair(x,y,w,h,label,sub,kind){         // draw the same room in both units
+      o+=room(x,y,w,h,label,sub,kind);
+      o+=room(x,mir(y,h),w,h,label,sub,kind);
+    }
+
+    o+=plotOutline();
+    o+='<rect class="roofline" x="'+(GX*S)+'" y="'+(GY*S)+'" width="'+(GW*S)+'" height="'+(GD*S)+'"/>';
+    o+='<rect class="wall" x="'+(UX*S)+'" y="'+(UY*S)+'" width="'+(UW*S)+'" height="'+(UD*S)+'"/>';
+    o+='<rect x="'+(IX*S)+'" y="'+(IY*S)+'" width="'+(IW*S)+'" height="'+(ID*S)+'" fill="var(--surface)"/>';
+
+    /* identical rooms, both units */
+    pair(IX,        IY,       CW,   6.0,   'BALCONY','84 ft2','open');
+    pair(IX,        IY+6.0,   CW,   14.5,  'LIVING / DINING','203 ft2','room');
+    pair(IX,        IY+20.5,  5.0,  5.335, 'VISITOR','WC - 27 ft2','wet');
+    pair(IX+5.0,    IY+20.5,  9.0,  5.335, 'ENTRY','LOBBY - 48 ft2','core');
+    pair(IX+CW,      IY,       EW,     11.5, 'BEDROOM','180 ft2','room');
+    pair(IX+CW,      IY+11.5,  EW,     6.5,  '','','wet');          // one suite behind one door
+    (function(){
+      function two(x,y,str,cls){ o+=txt(x,y,str,cls,'middle'); o+=txt(x,2*MID-y,str,cls,'middle'); }
+      two(IX+CW+3.0,  IY+14.2,'DRESSING','rl');   two(IX+CW+3.0,  IY+15.5,'39 ft2','rs');
+      two(IX+CW+10.8, IY+14.2,'BATH / WC','rl');  two(IX+CW+10.8, IY+15.5,'63 ft2','rs');
+      /* open partition - stops 3'-0" short so you walk through, no second door */
+      var px=IX+CW+6.0, pw=0.42;
+      o+='<rect class="wall" x="'+((px-pw/2)*S)+'" y="'+((IY+11.5)*S)+'" width="'+(pw*S)+'" height="'+(3.5*S)+'"/>';
+      o+='<rect class="wall" x="'+((px-pw/2)*S)+'" y="'+(mir(IY+11.5,3.5)*S)+'" width="'+(pw*S)+'" height="'+(3.5*S)+'"/>';
+    })();
+    pair(IX+CW,      IY+18.0,  8.0,    13.335,'KITCHEN','153 ft2','wet');
+    pair(IX+CW+8.0,  IY+18.0,  EW-8.0, 6.0,   '','','wet');
+    pair(IX+CW+8.0,  IY+24.0,  EW-8.0, 7.335, 'UTILITY','56 ft2','wet');
+    /* erase the internal line so the kitchen reads as one L-shaped room */
+    o+='<line x1="'+((IX+CW+8.0)*S)+'" y1="'+((IY+18.0)*S)+'" x2="'+((IX+CW+8.0)*S)+'" y2="'+((IY+24.0)*S)+'" stroke="var(--wash)" stroke-width="1.8"/>';
+    o+='<line x1="'+((IX+CW+8.0)*S)+'" y1="'+(mir(IY+24.0,0)*S)+'" x2="'+((IX+CW+8.0)*S)+'" y2="'+(mir(IY+18.0,0)*S)+'" stroke="var(--wash)" stroke-width="1.8"/>';
+
+    /* shared stair core, centred so the two halves are a true mirror */
+    o+=room(IX,     CY0, 8.5, CD, '','','core');
+    o+=txt(IX+4.25, CY0+4.6,'STAIR','rl','middle');
+    o+=txt(IX+4.25, CY0+6.1,'94 ft2','rs','middle');
+    (function(){var y0=CY0+1.4,x0=IX+1.0,w=6.5;for(var i=0;i<9;i++){o+='<line class="stair" x1="'+(x0*S)+'" y1="'+((y0+i*1.05)*S)+'" x2="'+((x0+w)*S)+'" y2="'+((y0+i*1.05)*S)+'"/>';}})();
+    o+=room(IX+8.5, CY0, 5.5, CD, '','','core');
+    o+='<text class="rs" transform="rotate(-90 '+((IX+11.25)*S)+' '+(MID*S)+')" x="'+((IX+11.25)*S)+'" y="'+(MID*S)+'" text-anchor="middle">SHARED LANDING</text>';
+
+    /* party walls */
+    o+='<rect class="wall" x="'+(IX*S)+'" y="'+((CY0-t/2)*S)+'" width="'+(CW*S)+'" height="'+(t*S)+'"/>';
+    o+='<rect class="wall" x="'+(IX*S)+'" y="'+((CY1-t/2)*S)+'" width="'+(CW*S)+'" height="'+(t*S)+'"/>';
+    o+='<rect class="wall" x="'+((IX+CW-t/2)*S)+'" y="'+(CY0*S)+'" width="'+(t*S)+'" height="'+(CD*S)+'"/>';
+    o+='<rect class="wall" x="'+((IX+CW)*S)+'" y="'+((MID-t/2)*S)+'" width="'+(EW*S)+'" height="'+(t*S)+'"/>';
+
+    /* doors - unit A */
+    o+=dH(IX+9.5,  CY0,      3.0, -1, 'l');            // entrance off the landing -> lobby
+    o+=dV(IX+5.0,  IY+21.4,  2.5, -1, 't');            // lobby -> visitor WC
+    o+=openH(IX+7.5, IY+20.5, 5.0);                    // lobby -> living, cased opening
+    o+=dV(IX+CW,   IY+21.6,  3.0,  1, 't');            // lobby -> kitchen
+    o+=dV(IX+CW,   IY+7.0,   3.0,  1, 't');            // living -> bedroom
+    o+=dH(IX+15.6, IY+11.5,  2.75, 1, 'l');            // bedroom -> the whole suite, one door
+    o+=dV(IX+22.0, IY+26.0,  2.75, 1, 't');            // kitchen -> utility
+    o+=slideH(IX+3.0, IY+6.0, 8.0);                    // living -> balcony
+    /* doors - unit B, mirrored */
+    o+=dH(IX+9.5,  CY1,               3.0,  1, 'l');
+    o+=dV(IX+5.0,  mir(IY+21.4,2.5),  2.5, -1, 't');
+    o+=openH(IX+7.5, mir(IY+20.5,0),  5.0);
+    o+=dV(IX+CW,   mir(IY+21.6,3.0),  3.0,  1, 't');
+    o+=dV(IX+CW,   mir(IY+7.0,3.0),   3.0,  1, 't');
+    o+=dH(IX+15.6, mir(IY+11.5,0),    2.75,-1, 'l');
+    o+=dV(IX+22.0, mir(IY+26.0,2.75), 2.75, 1, 't');
+    o+=slideH(IX+3.0, mir(IY+6.0,0), 8.0);
+
+    /* windows - both units get the same openings */
+    o+=winH(IX+17.0, UY, 9.0);                         // A bedroom, rear
+    o+=winH(IX+17.0, UY+UD-t, 9.0);                    // B bedroom, street
+    o+=winV(IX+IW, IY+2.0, 8.0);       o+=winV(IX+IW, mir(IY+2.0,8.0), 8.0);
+    o+=winV(UX, IY+8.0, 11.0);         o+=winV(UX, mir(IY+8.0,11.0), 11.0);
+    o+=winV(UX, IY+21.6, 3.0);         o+=winV(UX, mir(IY+21.6,3.0), 3.0);
+    o+=winV(IX+IW, IY+12.5, 4.5);      o+=winV(IX+IW, mir(IY+12.5,4.5), 4.5);
+    o+=winV(IX+IW, IY+19.0, 4.5);      o+=winV(IX+IW, mir(IY+19.0,4.5), 4.5);
+    o+=celosiaV(IX+IW, IY+25.5, 5.0);  o+=celosiaV(IX+IW, mir(IY+25.5,5.0), 5.0);
+    o+=winV(UX, CY0+2.5, 6.0);                         // stair, west
+
+    /* one wet zone down the east side serves both units */
+    o+='<rect x="'+((IX+CW)*S)+'" y="'+((IY+11.5)*S)+'" width="'+(EW*S)+'" height="'+(39.67*S)+'" fill="none" stroke="var(--dim)" stroke-width="1.4" stroke-dasharray="6 4"/>';
+    o+='<text class="rs" style="fill:var(--dim)" transform="rotate(-90 '+((IX+IW+2.4)*S)+' '+(MID*S)+')" x="'+((IX+IW+2.4)*S)+'" y="'+(MID*S)+'" text-anchor="middle">MAIN WET STACK - BOTH FLATS</text>';
+    o+='<rect x="'+(IX*S)+'" y="'+((IY+20.5)*S)+'" width="'+(5.0*S)+'" height="'+((2*MID-(IY+20.5))-(IY+20.5)>0?((2*MID-(IY+20.5+5.335))-(IY+20.5)+5.335)*S:0)+'" fill="none" stroke="var(--dim)" stroke-width="1.2" stroke-dasharray="4 3"/>';
+    o+='<text class="rs" style="fill:var(--dim)" transform="rotate(-90 '+((IX-2.2)*S)+' '+(MID*S)+')" x="'+((IX-2.2)*S)+'" y="'+(MID*S)+'" text-anchor="middle">WC STACK</text>';
+
+    /* balustrades and the louvre screen */
+    o+='<rect x="'+(IX*S)+'" y="'+(UY*S)+'" width="'+(CW*S)+'" height="'+(t*S)+'" fill="var(--glass)" stroke="var(--steel)" stroke-width=".6"/>';
+    o+='<rect x="'+(IX*S)+'" y="'+((UY+UD-t)*S)+'" width="'+(CW*S)+'" height="'+(t*S)+'" fill="var(--glass)" stroke="var(--steel)" stroke-width=".6"/>';
+    for(var g=0;g<8;g++) o+='<line x1="'+((5.6+g*0.4)*S)+'" y1="'+((UY+UD-0.3)*S)+'" x2="'+((5.6+g*0.4)*S)+'" y2="'+((UY+UD+1.8)*S)+'" stroke="var(--steel)" stroke-width="1.5"/>';
+    o+=txt(7.0, UY+UD+4.0,'louvre screen','rs','middle');
+    o+=txt(IX+22.0, UY-1.6, 'UNIT A  -  853 ft2', 'rl','middle');
+    o+=txt(IX+22.0, UY+UD+2.2, 'UNIT B  -  853 ft2', 'rl','middle');
+
+    /* dimensions */
+    o+=dimH(IX,IX+CW,-3.0,'14\'-0"');
+    o+=dimH(IX+CW,IX+IW,-3.0,'15\'-8"');
+    o+=dimH(UX,UX+UW,-6.6,'31\'-0"');
+    o+=dimV(IY,IY+6.0,PW+3.0,'6\'-0"');
+    o+=dimV(IY+6.0,CY0,PW+3.0,'19\'-10"');
+    o+=dimV(CY0,CY1,PW+3.0,'11\'-0"');
+    o+=dimV(CY1,mir(IY+6.0,0),PW+3.0,'19\'-10"');
+    o+=dimV(mir(IY+6.0,0),IY+ID,PW+3.0,'6\'-0"');
+    o+=dimV(UY,UY+UD,PW+7.6,'64\'-0"');
+    o+=txt(PW/2,PD+1.3,'S T R E E T','rs','middle');
+    put('tf1b','-100 -80 '+(PW*S+210)+' '+(PD*S+150),o);
+  })();
+
+  /* ---------- key : symbol legend ---------- */
+  (function(){
+    var el=document.getElementById('key'); if(!el) return;
+    function mini(inner){return '<svg viewBox="0 0 46 26" class="dwg" aria-hidden="true">'+inner+'</svg>';}
+    var wall='<rect x="0" y="10" width="46" height="6" fill="var(--steel)"/>';
+    var items=[
+      [mini(wall+'<line class="gap" x1="10" y1="13" x2="34" y2="13" stroke-width="7"/><line class="leaf" x1="10" y1="13" x2="10" y2="24"/><path class="swing" d="M34,13 A24,24 0 0 0 10,24" fill="none"/>'),'Hinged door - the arc shows which way it opens'],
+      [mini(wall+'<line class="gap" x1="8" y1="13" x2="38" y2="13" stroke-width="7"/><line class="slide" x1="8" y1="11" x2="25" y2="11"/><line class="slide" x1="21" y1="15" x2="38" y2="15"/>'),'Sliding door - balcony only'],
+      [mini(wall+'<line class="gap" x1="10" y1="13" x2="34" y2="13" stroke-width="7"/><line class="cased" x1="10" y1="9" x2="10" y2="17"/><line class="cased" x1="34" y1="9" x2="34" y2="17"/>'),'Cased opening - no door leaf'],
+      [mini(wall+'<rect class="win" x="10" y="10" width="26" height="6"/><line class="winline" x1="10" y1="13" x2="36" y2="13"/>'),'Window in the outside wall'],
+      [mini(wall+'<rect class="win" x="8" y="10" width="30" height="6"/><line class="winline" x1="15" y1="10" x2="15" y2="16"/><line class="winline" x1="23" y1="10" x2="23" y2="16"/><line class="winline" x1="31" y1="10" x2="31" y2="16"/>'),'Perforated block screen - open, never glazed'],
+      [mini('<rect x="4" y="4" width="38" height="18" fill="var(--olive)" opacity=".22" stroke="var(--rule)" stroke-width=".8"/>'),'Open to the sky above'],
+      [mini('<rect x="4" y="4" width="38" height="18" fill="none" stroke="var(--dim)" stroke-width="1.3" stroke-dasharray="7 4"/>'),'Build line of the floors above'],
+      [mini('<rect x="16" y="3" width="7" height="20" fill="var(--ink)"/><rect x="30" y="3" width="7" height="20" fill="var(--dim)"/>'),'Column - existing black, new red, 9" x 24"']
+    ];
+    el.innerHTML = items.map(function(i){return '<div class="li">'+i[0]+'<span>'+i[1]+'</span></div>';}).join('');
+  })();
+
+  /* ---------- 04 : front elevation ---------- */
+  (function(){
+    var E=9.2, o='';
+    var W=31, H=45.83;
+    function rc(x,y,w,h,fill,stroke,sw){
+      return '<rect x="'+(x*E)+'" y="'+((H-y-h)*E)+'" width="'+(w*E)+'" height="'+(h*E)+'" fill="'+fill+'"'+(stroke?' stroke="'+stroke+'" stroke-width="'+(sw||1)+'"':'')+'/>';
+    }
+    o+='<line x1="'+(-4*E)+'" y1="'+(H*E)+'" x2="'+((W+4)*E)+'" y2="'+(H*E)+'" stroke="var(--ink)" stroke-width="2.5"/>';
+    // upper mass
+    o+=rc(0,9.83,W,32.5,'var(--wash)','var(--ink)',1.6);
+    // 01 solid blade
+    o+=rc(0,9.83,5.5,32.5,'var(--surface)','var(--rule)',.8);
+    for(var i=0;i<26;i++) o+='<line x1="'+(0.5*E)+'" y1="'+((H-10.3-i*1.22)*E)+'" x2="'+(5.0*E)+'" y2="'+((H-10.3-i*1.22)*E)+'" stroke="var(--rule)" stroke-width=".5"/>';
+    // 05 the recessed undercroft, in shadow
+    o+=rc(0,0,W,9.83,'var(--steel)','none');
+    o+='<rect x="0" y="'+((H-9.83)*E)+'" width="'+(W*E)+'" height="'+(9.83*E)+'" fill="var(--ink)" opacity=".55"/>';
+    // the two new columns, in front of the recess
+    o+=rc(4.46,0,0.75,9.83,'var(--wash)','var(--ink)',.9);
+    o+=rc(29.58,0,0.75,9.83,'var(--wash)','var(--ink)',.9);
+    // 06 gate, set back at the boundary
+    for(var g=0;g<16;g++) o+='<line x1="'+(5.6*E)+'" y1="'+((H-0.8-g*0.55)*E)+'" x2="'+((W-1.0)*E)+'" y2="'+((H-0.8-g*0.55)*E)+'" stroke="var(--steel)" stroke-width="1.1" opacity=".85"/>';
+    // 02 louvre spine, ground to roof
+    o+=rc(5.5,9.83,3.0,32.5,'var(--void)','none');
+    for(var j=0;j<54;j++) o+='<line x1="'+(5.65*E)+'" y1="'+((H-10.3-j*0.6)*E)+'" x2="'+(8.35*E)+'" y2="'+((H-10.3-j*0.6)*E)+'" stroke="var(--steel)" stroke-width="1.3"/>';
+    // 03 recessed balconies
+    var lv=[9.83,20.17,30.5];
+    for(var k=0;k<3;k++){
+      var y=lv[k];
+      o+=rc(8.5,y,W-8.5,9.5,'var(--void)','none');
+      o+=rc(9.5,y+0.8,W-10.5,7.8,'var(--glass)','var(--steel)',.8);
+      o+=rc(8.5,y,W-8.5,3.5,'var(--glass)','var(--steel)',1);
+      o+='<line x1="'+(8.5*E)+'" y1="'+((H-y-3.5)*E)+'" x2="'+(W*E)+'" y2="'+((H-y-3.5)*E)+'" stroke="var(--steel)" stroke-width="2"/>';
+      o+='<line x1="0" y1="'+((H-y)*E)+'" x2="'+(W*E)+'" y2="'+((H-y)*E)+'" stroke="var(--ink)" stroke-width="1"/>';
+    }
+    // parapet + 04 roof edge as the brow, projecting 2 ft
+    o+=rc(0,42.33,W,3.5,'var(--wash)','var(--ink)',1.4);
+    o+='<rect x="'+(-2*E)+'" y="'+((H-43.66)*E)+'" width="'+((W+4)*E)+'" height="'+(1.33*E)+'" fill="var(--steel)"/>';
+    o+='<line x1="'+(-1.8*E)+'" y1="'+((H-42.4)*E)+'" x2="'+((W+1.8)*E)+'" y2="'+((H-42.4)*E)+'" stroke="#E8C888" stroke-width="1.6"/>';
+    // boundary walls
+    o+='<rect x="'+(-5.5*E)+'" y="'+((H-7.0)*E)+'" width="'+(5.5*E)+'" height="'+(7.0*E)+'" fill="var(--wash)" stroke="var(--rule)" stroke-width=".8"/>';
+    o+='<rect x="'+(W*E)+'" y="'+((H-7.0)*E)+'" width="'+(5.5*E)+'" height="'+(7.0*E)+'" fill="var(--wash)" stroke="var(--rule)" stroke-width=".8"/>';
+
+    function call(x,y,lx,ly,label){
+      return '<line class="lead" x1="'+(x*E)+'" y1="'+((H-y)*E)+'" x2="'+(lx*E)+'" y2="'+((H-ly)*E)+'"/>'
+        +'<circle cx="'+(x*E)+'" cy="'+((H-y)*E)+'" r="2.2" fill="var(--dim)"/>'
+        +'<text class="gridtx" x="'+(lx*E)+'" y="'+((H-ly)*E-5)+'" text-anchor="'+(lx>W/2?'start':'end')+'">'+esc(label)+'</text>';
+    }
+    o+=call(2.8,25.0,-8.0,28.0,'01 SOLID BLADE');
+    o+=call(7.0,17.3,-8.0,14.6,'02 LOUVRE SPINE');
+    o+=call(20.5,24.3,39.0,28.0,'03 RECESSED BALCONY');
+    o+=call(23.0,43.0,39.0,44.8,'04 ROOF EDGE + LED');
+    o+=call(18.0,5.0,39.0,9.0,'05 UNDERCROFT, 6 FT BACK');
+    o+=call(30.4,4.0,39.0,1.0,'NEW COLUMN');
+    o+=call(6.4,2.0,-8.0,1.0,'NEW COLUMN');
+
+    o+='<g class="dim">';
+    [[0,9.83,"+9'-10\""],[9.83,20.17,"+21'-8\""],[20.17,30.5,"+32'-0\""],[30.5,42.33,"+42'-4\""],[42.33,45.83,"+45'-10\""]].forEach(function(d){
+      var a=(H-d[0])*E,bb=(H-d[1])*E,X=(W+9.0)*E;
+      o+='<line x1="'+X+'" y1="'+a+'" x2="'+X+'" y2="'+bb+'"/>'
+        +'<line x1="'+(X-4)+'" y1="'+a+'" x2="'+(X+4)+'" y2="'+a+'"/>'
+        +'<line x1="'+(X-4)+'" y1="'+bb+'" x2="'+(X+4)+'" y2="'+bb+'"/>'
+        +'<text x="'+(X+7)+'" y="'+((a+bb)/2+3)+'" text-anchor="start">'+d[2]+'</text>';
+    });
+    o+='</g>';
+    o+='<g class="dim"><line x1="0" y1="'+((H+4.2)*E)+'" x2="'+(W*E)+'" y2="'+((H+4.2)*E)+'"/>'
+      +'<line x1="0" y1="'+((H+4.2)*E-4)+'" x2="0" y2="'+((H+4.2)*E+4)+'"/>'
+      +'<line x1="'+(W*E)+'" y1="'+((H+4.2)*E-4)+'" x2="'+(W*E)+'" y2="'+((H+4.2)*E+4)+'"/>'
+      +'<text x="'+(W*E/2)+'" y="'+((H+4.2)*E+16)+'">27\'-0"</text></g>';
+    o+='<g class="dim"><line x1="0" y1="'+((H+7.2)*E)+'" x2="'+(5.5*E)+'" y2="'+((H+7.2)*E)+'"/><text x="'+(2.75*E)+'" y="'+((H+7.2)*E+14)+'">5\'-6"</text>'
+      +'<line x1="'+(5.5*E)+'" y1="'+((H+7.2)*E)+'" x2="'+(8.5*E)+'" y2="'+((H+7.2)*E)+'"/><text x="'+(7.0*E)+'" y="'+((H+7.2)*E+14)+'">3\'-0"</text>'
+      +'<line x1="'+(8.5*E)+'" y1="'+((H+7.2)*E)+'" x2="'+(W*E)+'" y2="'+((H+7.2)*E)+'"/><text x="'+((8.5+W)/2*E)+'" y="'+((H+7.2)*E+14)+'">22\'-6"</text></g>';
+
+    put('elev','-'+(16*E)+' -'+(4.5*E)+' '+((W+37)*E)+' '+((H+15)*E),o);
+  })();
+
+  /* ---------- 05 : long section ---------- */
+  (function(){
+    var E=7.6, o='';
+    var H=45.83;                 // heights above apron
+    // horizontal axis is PLOT DEPTH: 0 = rear boundary, 72 = street
+    function rc(x,y,w,h,fill,stroke,sw){
+      return '<rect x="'+(x*E)+'" y="'+((H-y-h)*E)+'" width="'+(w*E)+'" height="'+(h*E)+'" fill="'+fill+'"'+(stroke?' stroke="'+stroke+'" stroke-width="'+(sw||1)+'"':'')+'/>';
+    }
+    function tx(x,y,s,cls,a){return '<text class="'+(cls||'note')+'" x="'+(x*E)+'" y="'+((H-y)*E)+'"'+(a?' text-anchor="'+a+'"':'')+'>'+esc(s)+'</text>';}
+
+    var lv=[1.5,11.33,21.67,32.0,42.33];
+    var GA=GY, GB=GY+GD;          // ground walls: 8 .. 62
+    var UA=UY, UB=UY+UD;          // upper walls: 4 .. 68
+    var RA=RY, RB=RY+RD;          // roof: 2 .. 70
+
+    // ground line + apron
+    o+='<line x1="'+(-2*E)+'" y1="'+(H*E)+'" x2="'+((PD+6)*E)+'" y2="'+(H*E)+'" stroke="var(--ink)" stroke-width="2.5"/>';
+    o+=rc(GB,0,PD-GB,0.6,'var(--void)','var(--rule)',.8);
+    o+=rc(0,0,GA,0.6,'var(--void)','var(--rule)',.8);
+    // shaded ground under the overhang
+    o+='<rect x="'+(GB*E)+'" y="'+((H-9.6)*E)+'" width="'+((UB-GB)*E)+'" height="'+(9.6*E)+'" fill="var(--steel)" opacity=".13"/>';
+    o+='<rect x="'+(UA*E)+'" y="'+((H-9.6)*E)+'" width="'+((GA-UA)*E)+'" height="'+(9.6*E)+'" fill="var(--steel)" opacity=".13"/>';
+
+    // slabs
+    o+=rc(GA,lv[0]-0.83,GD,0.83,'var(--steel)','none');                    // ground slab
+    for(var i=1;i<lv.length;i++) o+=rc(UA,lv[i]-0.83,UD,0.83,'var(--steel)','none');  // upper slabs
+    o+=rc(RA,42.33,RD,0.83,'var(--steel)','none');                          // roof slab, projecting
+
+    // volumes
+    var names=['CAR PARK','TWO 1-BED FLATS','2-BED APARTMENT','2-BED APARTMENT'];
+    for(var k=0;k<4;k++){
+      var y=lv[k], hh=lv[k+1]-lv[k]-0.83;
+      var a=(k===0?GA:UA), d=(k===0?GD:UD);
+      o+=rc(a,y,d,hh,(k===0?'var(--void)':'var(--surface)'),'var(--rule)',.8);
+      if(k===0){
+        o+=rc(GA,y,6.0,hh,'var(--olive)','none');                           // small rear garden
+        o+=rc(30.5,y,11.0,hh,'var(--wash)','var(--ink3)',1.0);              // stair enclosure, mid-plan
+      }else{
+        o+=rc(30.5,y,11.0,hh,'var(--wash)','var(--ink3)',1.0);              // stair + landing core, stacked
+        o+=rc(UB-6.17,y,6.17,hh,'var(--void)','none');                      // balcony recess
+        o+='<line x1="'+((UB-6.17)*E)+'" y1="'+((H-y-hh)*E)+'" x2="'+((UB-6.17)*E)+'" y2="'+((H-y)*E)+'" stroke="var(--steel)" stroke-width="1.4"/>';
+        o+=rc(UB-6.17,y,6.17,3.5,'var(--glass)','var(--steel)',.9);
+      }
+      o+=tx(a+d*0.76,y+hh/2-0.6,names[k],'rl','middle');
+    }
+    o+=tx(15.5,lv[0]+4.4,'store','rs','middle');
+    o+=tx(36.0,lv[0]+2.2,'stair','rs','middle');
+    for(var sn=1;sn<4;sn++) o+=tx(36.0,lv[sn]+2.0,'stair','rs','middle');
+    o+=tx(UB-3.1,lv[2]+5.2,'balcony','rs','middle');
+    o+=tx(11.0,lv[3]+5.2,'bedrooms','rs','middle');
+    o+=tx(11.0,lv[3]+3.4,'this end','rs','middle');
+
+    // the two new front columns
+    o+=rc(UB-2.0,0,2.0,lv[1]-0.83,'var(--wash)','var(--ink)',1.1);
+    o+=tx(UB+3.4,6.0,'new column','rs','middle');
+    o+='<line class="lead" x1="'+((UB+2.2)*E)+'" y1="'+((H-6.3)*E)+'" x2="'+((UB-0.9)*E)+'" y2="'+((H-6.3)*E)+'"/>';
+
+    // parapet + projecting roof edge
+    o+=rc(UA,42.33,0.83,3.5,'var(--wash)','var(--ink)',1.2);
+    o+=rc(UB-0.83,42.33,0.83,3.5,'var(--wash)','var(--ink)',1.2);
+    o+=tx(UA+UD*0.30,43.9,'ROOF TERRACE','rl','middle');
+    // pergola
+    o+='<rect x="'+((UB-24)*E)+'" y="'+((H-53.0)*E)+'" width="'+(17.2*E)+'" height="'+(0.6*E)+'" fill="var(--steel)"/>';
+    o+='<rect x="'+((UB-24)*E)+'" y="'+((H-53.0)*E)+'" width="'+(0.5*E)+'" height="'+(8.2*E)+'" fill="var(--steel)"/>';
+    o+='<rect x="'+((UB-7.3)*E)+'" y="'+((H-53.0)*E)+'" width="'+(0.5*E)+'" height="'+(8.2*E)+'" fill="var(--steel)"/>';
+    for(var pg=0;pg<11;pg++) o+='<rect x="'+((UB-23.4+pg*1.55)*E)+'" y="'+((H-52.85)*E)+'" width="'+(0.45*E)+'" height="'+(1.0*E)+'" fill="#B08551"/>';
+    o+=tx(UB-15.5,53.9,'timber pergola','rs','middle');
+    o+='<rect x="'+((UA+3)*E)+'" y="'+((H-49.8)*E)+'" width="'+(8.0*E)+'" height="'+(4.0*E)+'" fill="var(--wash)" stroke="var(--ink3)" stroke-width=".9"/>';
+    o+=tx(UA+7,50.6,'water tanks','rs','middle');
+
+    // stair flights, in the plane of the cut
+    for(var s2=0;s2<4;s2++){
+      var yb=lv[s2];
+      o+='<path class="stair" d="M'+(31.5*E)+','+((H-yb-0.3)*E)+' L'+(36.0*E)+','+((H-yb-5.0)*E)+'"/>';
+      o+='<path class="stair" d="M'+(40.5*E)+','+((H-yb-5.0)*E)+' L'+(36.0*E)+','+((H-yb-9.9)*E)+'"/>';
+    }
+
+    // overhang callouts
+    o+='<g class="dim"><line x1="'+(GB*E)+'" y1="'+((H+2.6)*E)+'" x2="'+(UB*E)+'" y2="'+((H+2.6)*E)+'"/>'
+      +'<line x1="'+(GB*E)+'" y1="'+((H+2.6)*E-4)+'" x2="'+(GB*E)+'" y2="'+((H+2.6)*E+4)+'"/>'
+      +'<line x1="'+(UB*E)+'" y1="'+((H+2.6)*E-4)+'" x2="'+(UB*E)+'" y2="'+((H+2.6)*E+4)+'"/>'
+      +'<text x="'+((GB+UB)/2*E)+'" y="'+((H+2.6)*E+15)+'">6\'-0" overhang</text></g>';
+    o+='<g class="dim"><line x1="'+(UA*E)+'" y1="'+((H+2.6)*E)+'" x2="'+(GA*E)+'" y2="'+((H+2.6)*E)+'"/>'
+      +'<line x1="'+(UA*E)+'" y1="'+((H+2.6)*E-4)+'" x2="'+(UA*E)+'" y2="'+((H+2.6)*E+4)+'"/>'
+      +'<line x1="'+(GA*E)+'" y1="'+((H+2.6)*E-4)+'" x2="'+(GA*E)+'" y2="'+((H+2.6)*E+4)+'"/>'
+      +'<text x="'+((UA+GA)/2*E)+'" y="'+((H+2.6)*E+15)+'">4\'-0"</text></g>';
+    o+='<g class="dim"><line x1="'+(UB*E)+'" y1="'+((H+6.2)*E)+'" x2="'+(PD*E)+'" y2="'+((H+6.2)*E)+'"/>'
+      +'<line x1="'+(UB*E)+'" y1="'+((H+6.2)*E-4)+'" x2="'+(UB*E)+'" y2="'+((H+6.2)*E+4)+'"/>'
+      +'<line x1="'+(PD*E)+'" y1="'+((H+6.2)*E-4)+'" x2="'+(PD*E)+'" y2="'+((H+6.2)*E+4)+'"/>'
+      +'<text x="'+((UB+PD)/2*E)+'" y="'+((H+6.2)*E+15)+'">4\'-0"</text></g>';
+    o+='<g class="dim"><line x1="'+(UA*E)+'" y1="'+((H+6.2)*E)+'" x2="'+(UB*E)+'" y2="'+((H+6.2)*E)+'"/>'
+      +'<line x1="'+(UA*E)+'" y1="'+((H+6.2)*E-4)+'" x2="'+(UA*E)+'" y2="'+((H+6.2)*E+4)+'"/>'
+      +'<line x1="'+(UB*E)+'" y1="'+((H+6.2)*E-4)+'" x2="'+(UB*E)+'" y2="'+((H+6.2)*E+4)+'"/>'
+      +'<text x="'+((UA+UB)/2*E)+'" y="'+((H+6.2)*E+15)+'">64\'-0" upper floors</text></g>';
+    o+='<g class="dim"><line x1="'+(GA*E)+'" y1="'+((H+9.8)*E)+'" x2="'+(GB*E)+'" y2="'+((H+9.8)*E)+'"/>'
+      +'<line x1="'+(GA*E)+'" y1="'+((H+9.8)*E-4)+'" x2="'+(GA*E)+'" y2="'+((H+9.8)*E+4)+'"/>'
+      +'<line x1="'+(GB*E)+'" y1="'+((H+9.8)*E-4)+'" x2="'+(GB*E)+'" y2="'+((H+9.8)*E+4)+'"/>'
+      +'<text x="'+((GA+GB)/2*E)+'" y="'+((H+9.8)*E+15)+'">54\'-0" ground floor</text></g>';
+
+    // level tags
+    var tags=[["+1'-6\"",'ground / car park'],["+11'-4\"",'level 1'],["+21'-8\"",'level 2'],["+32'-0\"",'level 3'],["+42'-4\"",'roof']];
+    for(var m=0;m<tags.length;m++){
+      var Y=(H-lv[m])*E;
+      o+='<line x1="'+(-1*E)+'" y1="'+Y+'" x2="'+((PD+3)*E)+'" y2="'+Y+'" stroke="var(--dim)" stroke-width=".5" stroke-dasharray="12 3 2 3" opacity=".5"/>';
+      o+='<text class="lvltx" x="'+((PD+3.8)*E)+'" y="'+(Y-4)+'">'+tags[m][0]+'</text>';
+      o+='<text class="rs" x="'+((PD+3.8)*E)+'" y="'+(Y+8)+'" text-anchor="start">'+tags[m][1]+'</text>';
+    }
+    var YT=(H-45.83)*E;
+    o+='<line x1="'+(-1*E)+'" y1="'+YT+'" x2="'+((PD+3)*E)+'" y2="'+YT+'" stroke="var(--dim)" stroke-width=".5" stroke-dasharray="12 3 2 3" opacity=".5"/>';
+    o+='<text class="lvltx" x="'+((PD+3.8)*E)+'" y="'+(YT-4)+'">+45\'-10"</text>';
+    o+='<text class="rs" x="'+((PD+3.8)*E)+'" y="'+(YT+8)+'" text-anchor="start">top of parapet</text>';
+
+    o+='<text class="rs" x="'+((PD+1.0)*E)+'" y="'+((H+1.2)*E)+'" text-anchor="middle">street</text>';
+    o+='<text class="rs" x="'+(-1.0*E)+'" y="'+((H+1.2)*E)+'" text-anchor="middle">rear</text>';
+
+    put('sect','-'+(5*E)+' -'+(11.5*E)+' '+((PD+22)*E)+' '+((H+24)*E),o);
+  })();
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------
+   3D visualisation. No libraries. Axis-aligned boxes, perspective
+   projection, painter's algorithm, sun + cast shadow, gradient faces.
+   Geometry in FEET, identical to the plans: x across, y rear->street, z up.
+----------------------------------------------------------------*/
+(function(){
+  var cv=document.getElementById('m3d'); if(!cv||!cv.getContext) return;
+  var ctx=cv.getContext('2d');
+  cv.width=1800; cv.height=1140;
+  var Wc=cv.width, Hc=cv.height;
+
+  var yaw=-2.42, pitch=0.30, mode='all', SC=18, CX=15.5, CY=36, CZ=20, PX=0, PY=0;
+  var DIST=260;                                   // camera distance, feet
+  var spin=true;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) spin=false;
+
+  function isDark(){
+    var a=document.documentElement.getAttribute('data-theme');
+    if(a==='dark') return true;
+    if(a==='light') return false;
+    return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  }
+  var PL={
+    light:{wall:[238,234,226],rend:[228,223,213],slab:[196,191,182],metal:[38,44,50],
+           glass:[178,201,211],col:[244,241,234],grass:[188,182,170],pave:[172,168,160],
+           road:[124,122,120],car:[132,146,158],timber:[171,128,78],leaf:[104,124,86],
+           trunk:[110,92,74],sky0:[196,214,228],sky1:[240,240,236],edge:'rgba(28,30,34,.26)',
+           gedge:'rgba(24,34,42,.42)',shade:'rgba(48,50,46,.26)',contact:'rgba(40,44,38,.20)'},
+    dark :{wall:[186,180,170],rend:[172,166,156],slab:[132,128,120],metal:[16,20,24],
+           glass:[104,132,144],col:[196,190,180],grass:[56,54,50],pave:[96,93,88],
+           road:[62,61,60],car:[86,98,110],timber:[136,101,58],leaf:[62,78,56],
+           trunk:[74,62,50],sky0:[28,36,46],sky1:[16,19,23],edge:'rgba(0,0,0,.42)',
+           gedge:'rgba(0,0,0,.55)',shade:'rgba(0,0,0,.30)',contact:'rgba(0,0,0,.26)'}
+  };
+
+  /* ---------- geometry ---------- */
+  var GX0=0, GX1=31, GY0=8, GY1=62;
+  var UX0=0, UX1=31, UY0=4, UY1=68;
+  var FFL=[1.5,11.33,21.67,32.0], ROOF=42.33, PARA=45.83, SLAB=0.83, WT=0.67, CLR=9.5;
+  var RX0=-2, RY0=2, RX1=33, RY1=70;
+
+  var CTXN=0;
+  function build(m){
+    var B=[], expl=(m==='explode'), peel1=(m==='l1'), peel2=(m==='l2');
+    function add(x0,y0,z0,x1,y1,z1,k){B.push([x0,y0,z0,x1,y1,z1,k]);}
+    function lift(i){return expl ? i*15 : 0;}
+
+    /* context: boundary wall, trees, kerb */
+    if(!expl){
+      add(-36,71.4,0, 33,72,6.2,'rend');                       // street boundary wall
+      add(-36,-16,0, -35.4,72,6.2,'rend');                     // far side wall of plot A
+    }
+
+    CTXN=B.length;                                             // fit ignores the context
+    /* ground floor */
+    add(GX0,GY0,0, GX1,GY1,1.5,'slab');
+    add(0.67,30.5,1.5, 10.5,41.5,FFL[1]-SLAB,'rend');          // stair core, mid-plan west - stacks on every level
+    add(0.67,14.67,1.5, 10.5,30.5,FFL[1]-SLAB,'rend');         // store behind it: bins, tanks, lockers
+    add(0.7,9.0,1.45, 30.3,14.6,1.62,'grass');                 // small rear garden
+    var gc=[[0.3,15],[10.1,15],[20.1,15],[29.95,15],
+            [0.3,31],[10.1,31],[20.1,31],[29.95,31],
+            [0.3,47],[10.1,47],[20.1,47],[29.95,47]];
+    for(var c=0;c<gc.length;c++) add(gc[c][0],gc[c][1],1.5, gc[c][0]+0.75,gc[c][1]+2,FFL[1]-SLAB,'col');
+    add(4.46,66,0, 5.21,68,FFL[1]-SLAB,'col');
+    add(29.58,66,0, 30.33,68,FFL[1]-SLAB,'col');
+    if(!expl){
+      var cars=[[2.4,44.5],[12.1,16.0],[12.1,31.6],[12.1,47.1],
+                [22.0,16.0],[22.0,31.6],[22.0,47.1]];          // seven, nose to tail
+      for(var q=0;q<cars.length;q++){
+        var a=cars[q][0], b=cars[q][1];
+        add(a,b,1.5, a+6.4,b+14.6,4.3,'car');
+        add(a+0.5,b+3.5,4.3, a+5.9,b+11.1,6.1,'glass');
+      }
+    }
+
+    /* apartment floors : level 1 is Scheme B (two 1-beds), levels 2-3 are Scheme A (2-bed) */
+    var WB=[[0.67,30.5,14.67,31.0],[0.67,41.0,14.67,41.5],[14.17,30.5,14.67,41.5],
+            [14.17,4.67,14.67,30.5],[14.17,41.5,14.67,67.33],
+            [0.67,25.17,14.17,25.67],[0.67,46.67,14.17,47.17],
+            [5.17,25.17,5.67,30.5],[5.17,41.5,5.67,46.67],
+            [14.67,16.17,30.33,16.67],[14.67,55.33,30.33,55.83],
+            [14.67,22.67,30.33,23.17],[14.67,48.83,30.33,49.33],
+            [14.67,35.75,30.33,36.25],
+            [22.17,23.17,22.67,35.75],[22.17,36.25,22.67,48.83]];
+    var WA=[[0.67,12.67,30.33,13.17],[0.67,27.0,30.33,27.5],[0.67,30.5,30.33,31.0],
+            [0.67,41.0,30.33,41.5],[0.67,50.5,30.33,51.0],
+            [12.5,4.67,13.0,27.0],[8.5,30.5,9.0,41.5],[14.0,30.5,14.5,41.5],
+            [20.33,33.5,20.83,41.5],[20.33,33.5,24.83,34.0],[24.83,30.5,25.33,41.5],
+            [24.83,36.5,30.33,37.0],[20.0,27.0,20.5,30.5],
+            [10.0,41.5,10.5,50.5],[24.0,51.0,24.5,61.33],
+            [0.67,61.17,30.33,61.84]];
+    var levels = (m==='ground') ? 0 : (peel1 ? 1 : (peel2 ? 2 : 3));
+    var openv = (peel1||peel2||expl);
+    for(var i=0;i<levels;i++){
+      var z=FFL[i+1]+lift(i+1);
+      var cut=openv ? 4.5 : CLR, top=z+cut;
+      add(UX0,UY0,z-SLAB, UX1,UY1,z,'slab');
+      add(UX0,UY0,z, UX1,UY0+WT,top,'wall');
+      add(UX0,UY0,z, UX0+WT,UY1,top,'wall');
+      add(UX1-WT,UY0,z, UX1,UY1,top,'wall');
+      if(i===0){
+        /* Scheme B : Unit B's balcony is the west 14 ft, its bedroom takes the rest */
+        add(UX0,UY1-WT,z, 14.67,UY1,top,'wall');
+        add(14.67,61.17,z, UX1-WT,61.84,top,'wall');
+        if(!openv) add(17.67,UY1-WT-0.07,z+3.0, 26.67,UY1,z+7.5,'glass');
+      }else{
+        /* Scheme A : the balcony runs the full width */
+        add(UX0,UY1-WT,z, UX1,UY1,top,'wall');
+        add(UX0+WT,61.17,z, 11.67,61.84,top,'wall');
+        add(11.67,61.17,z, 20.67,61.84,top,'glass');
+        add(20.67,61.17,z, UX1-WT,61.84,top,'wall');
+      }
+      if(!openv){
+        var bx0=(i===0)?UX0+WT:UX0+WT, bx1=(i===0)?14.67:UX1-WT;
+        add(bx0,UY1-WT+0.2,z+3.3, bx1,UY1-0.1,z+3.5,'metal');   // balcony top rail
+        add(bx0,UY1-WT+0.28,z, bx1,UY1-0.18,z+3.3,'glass');     // balustrade glass
+        for(var bp=0;bp<10;bp++){
+          var bxp=bx0+0.3+bp*2.75;
+          if(bxp+0.22>bx1) break;
+          add(bxp,UY1-WT+0.22,z, bxp+0.22,UY1-0.14,z+3.4,'metal');
+        }
+        var sill=z+3.0, head=z+7.5, e=0.07;
+        if(i===0){
+          add(17.67,UY0-e,sill, 26.67,UY0+WT,head,'glass');                 // unit A bedroom, rear
+          var wb=[[12.7,23.7],[26.8,29.8],[41.0,44.0],[55.0,66.0]];
+          for(var w1=0;w1<wb.length;w1++) add(UX0-e,wb[w1][0],sill, UX0+WT,wb[w1][1],head,'glass');
+          var eb=[[6.7,14.7],[17.2,21.7],[23.7,28.2],[43.8,48.3],[50.3,54.8],[57.3,65.3]];
+          for(var w2=0;w2<eb.length;w2++) add(UX1-WT,eb[w2][0],sill, UX1+e,eb[w2][1],head,'glass');
+          for(var ls=0;ls<5;ls++) add(UX1-WT,30.2+ls*1.0,z, UX1+e,30.8+ls*1.0,top,'metal');
+          for(var l2=0;l2<5;l2++) add(UX1-WT,36.2+l2*1.0,z, UX1+e,36.8+l2*1.0,top,'metal');
+        }else{
+          add(6.0,UY0-e,sill, 11.0,UY0+WT,head,'glass');                    // bedroom 2 bath, rear
+          add(14.5,UY0-e,sill, 20.5,UY0+WT,head,'glass');                   // master bath, rear
+          var wa=[[15.2,24.2],[27.8,29.8],[33.0,39.0],[43.5,48.5],[52.7,58.7]];
+          for(var w3=0;w3<wa.length;w3++) add(UX0-e,wa[w3][0],sill, UX0+WT,wa[w3][1],head,'glass');
+          var ea=[[6.7,10.7],[15.2,24.2],[31.5,35.5],[43.0,49.0]];
+          for(var w4=0;w4<ea.length;w4++) add(UX1-WT,ea[w4][0],sill, UX1+e,ea[w4][1],head,'glass');
+          for(var l3=0;l3<7;l3++) add(UX1-WT,52.9+l3*1.0,z, UX1+e,53.5+l3*1.0,top,'metal');
+        }
+      }
+      if(openv){
+        var IWs=(i===0)?WB:WA;
+        for(var w=0;w<IWs.length;w++) add(IWs[w][0],IWs[w][1],z, IWs[w][2],IWs[w][3],z+4.0,'wall');
+      }
+    }
+    /* louvre spine, ground to roof */
+    if(m==='all'){
+      for(var sl=0;sl<41;sl++){
+        var sz=FFL[1]+0.2+sl*1.0;
+        if(sz+0.62>ROOF) break;
+        add(5.5,67.3,sz, 8.5,68.1,sz+0.62,'metal');
+      }
+      add(5.5,67.55,FFL[1], 5.9,67.95,ROOF,'metal');
+      add(8.1,67.55,FFL[1], 8.5,67.95,ROOF,'metal');
+    }
+
+    /* roof, fascia, parapet, pergola, tanks */
+    if(m==='all'||expl){
+      var rz=ROOF+lift(3);
+      add(RX0,RY0,rz, RX1,RY1,rz+0.83,'slab');
+      add(RX0,RY0,rz, RX1,RY0+0.42,rz+1.33,'metal');
+      add(RX0,RY1-0.42,rz, RX1,RY1,rz+1.33,'metal');
+      add(RX0,RY0,rz, RX0+0.42,RY1,rz+1.33,'metal');
+      add(RX1-0.42,RY0,rz, RX1,RY1,rz+1.33,'metal');
+      var pz=rz+0.83, pt=PARA+lift(3);
+      add(UX0,UY0,pz, UX1,UY0+WT,pt,'rend');
+      add(UX0,UY1-WT,pz, UX1,UY1,pt,'rend');
+      add(UX0,UY0,pz, UX0+WT,UY1,pt,'rend');
+      add(UX1-WT,UY0,pz, UX1,UY1,pt,'rend');
+      var pp=[[10,46],[27.5,46],[10,63],[27.5,63]];
+      for(var k=0;k<pp.length;k++) add(pp[k][0],pp[k][1],pz, pp[k][0]+0.5,pp[k][1]+0.5,pz+8.4,'metal');
+      add(10,46,pz+8.0, 28,46.5,pz+8.4,'metal');
+      add(10,63,pz+8.0, 28,63.5,pz+8.4,'metal');
+      for(var tt=0;tt<9;tt++) add(10,46.8+tt*2.0,pz+7.9, 28,47.3+tt*2.0,pz+8.35,'timber');
+      add(2,9,pz, 10,17,pz+4,'rend');                                       // tank platform
+      add(1.0,30.5,pz, 10.17,41.5,pz+4.5,'rend');                           // stair overrun + roof door
+    }
+    return B;
+  }
+
+  /* ---------- projection ---------- */
+  function pr(p){
+    var x=p[0]-CX, y=p[1]-CY, z=p[2]-CZ;
+    var cy=Math.cos(yaw), sy=Math.sin(yaw);
+    var X=x*cy - y*sy, Y=x*sy + y*cy;
+    var cp=Math.cos(pitch), sp=Math.sin(pitch);
+    var d = Y*cp - z*sp;
+    var f = DIST/Math.max(40, DIST+d);
+    return [X*f, -(Y*sp + z*cp)*f, d];
+  }
+  function sx(p){ return (p[0]-PX)*SC + Wc/2; }
+  function sy2(p){ return (p[1]-PY)*SC + Hc/2; }
+
+  function boxFaces(b){
+    var x0=b[0],y0=b[1],z0=b[2],x1=b[3],y1=b[4],z1=b[5],k=b[6];
+    return [
+      [[[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]],[0,0,1],k],
+      [[[x0,y0,z0],[x0,y1,z0],[x1,y1,z0],[x1,y0,z0]],[0,0,-1],k],
+      [[[x0,y0,z0],[x1,y0,z0],[x1,y0,z1],[x0,y0,z1]],[0,-1,0],k],
+      [[[x0,y1,z0],[x0,y1,z1],[x1,y1,z1],[x1,y1,z0]],[0,1,0],k],
+      [[[x0,y0,z0],[x0,y0,z1],[x0,y1,z1],[x0,y1,z0]],[-1,0,0],k],
+      [[[x1,y0,z0],[x1,y1,z0],[x1,y1,z1],[x1,y0,z1]],[1,0,0],k]
+    ];
+  }
+  var SUN=(function(){var v=[-0.34,-0.42,-0.84],m=Math.sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
+    return [v[0]/m,v[1]/m,v[2]/m];})();
+  var LGT=[-SUN[0],-SUN[1],-SUN[2]];
+  function rgb(c,f){
+    return 'rgb('+Math.round(Math.min(255,c[0]*f))+','+Math.round(Math.min(255,c[1]*f))+','+Math.round(Math.min(255,c[2]*f))+')';
+  }
+
+  var MODEL=build('all');
+  function span(){
+    var x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+    for(var j=CTXN;j<MODEL.length;j++){var q=MODEL[j];
+      for(var n=0;n<8;n++){
+        var p=pr([n&1?q[3]:q[0], n&2?q[4]:q[1], n&4?q[5]:q[2]]);
+        if(p[0]<x0)x0=p[0]; if(p[0]>x1)x1=p[0]; if(p[1]<y0)y0=p[1]; if(p[1]>y1)y1=p[1];
+      }}
+    return [x0,y0,x1,y1];
+  }
+  function centreOnly(){ var s=span(); PX=(s[0]+s[2])/2; PY=(s[1]+s[3])/2; }
+  function fit(){
+    var mn=[1e9,1e9,1e9], mx=[-1e9,-1e9,-1e9];
+    for(var i=CTXN;i<MODEL.length;i++){var b=MODEL[i];
+      for(var a=0;a<3;a++){ if(b[a]<mn[a])mn[a]=b[a]; if(b[a+3]>mx[a])mx[a]=b[a+3]; }}
+    CX=(mn[0]+mx[0])/2; CY=(mn[1]+mx[1])/2; CZ=(mn[2]+mx[2])/2;
+    var bw=0,bh=0,sv=yaw;
+    for(var t=0;t<12;t++){ yaw=sv+t*Math.PI/6; var q=span();
+      bw=Math.max(bw,q[2]-q[0]); bh=Math.max(bh,q[3]-q[1]); }
+    yaw=sv;
+    SC=Math.min(Wc*0.92/Math.max(1,bw), Hc*0.92/Math.max(1,bh));
+    centreOnly();
+  }
+
+  function poly(pts){
+    ctx.beginPath();
+    ctx.moveTo(sx(pts[0]),sy2(pts[0]));
+    for(var i=1;i<pts.length;i++) ctx.lineTo(sx(pts[i]),sy2(pts[i]));
+    ctx.closePath();
+  }
+  function dropW(p){ var t=-p[2]/SUN[2]; return [p[0]+t*SUN[0], p[1]+t*SUN[1], 0.02]; }  // world space
+
+  function draw(){
+    centreOnly();
+    var P=PL[isDark()?'dark':'light'];
+
+    /* sky */
+    var sg=ctx.createLinearGradient(0,0,0,Hc);
+    sg.addColorStop(0,'rgb('+P.sky0.join(',')+')');
+    sg.addColorStop(1,'rgb('+P.sky1.join(',')+')');
+    ctx.fillStyle=sg; ctx.fillRect(0,0,Wc,Hc);
+
+    /* ground: fill below the true horizon, hazier as it recedes */
+    var hy=(-DIST*Math.tan(pitch)-PY)*SC + Hc/2;
+    if(hy<Hc){
+      var gg=ctx.createLinearGradient(0,Math.max(0,hy),0,Hc);
+      gg.addColorStop(0,rgb(P.grass,1.10));
+      gg.addColorStop(1,rgb(P.grass,0.92));
+      ctx.fillStyle=gg; ctx.fillRect(0,Math.max(0,hy),Wc,Hc-Math.max(0,hy));
+    } else { ctx.fillStyle=rgb(P.grass,1.0); ctx.fillRect(0,0,Wc,Hc); }
+    ctx.strokeStyle='transparent'; ctx.lineWidth=0;
+    var far=300;
+    ctx.fillStyle=rgb(P.road,1.0);
+    poly([pr([-far,72,0]),pr([far,72,0]),pr([far,98,0]),pr([-far,98,0])]); ctx.fill();
+    ctx.fillStyle=rgb(P.pave,1.0);
+    poly([pr([0,4,0.03]),pr([31,4,0.03]),pr([31,72,0.03]),pr([0,72,0.03])]); ctx.fill();
+
+    /* contact shadow: what actually grounds the building */
+    ctx.fillStyle=P.contact;
+    poly([pr([UX0-2.2,UY0-2.2,0.015]),pr([UX1+2.2,UY0-2.2,0.015]),
+          pr([UX1+2.2,UY1+2.2,0.015]),pr([UX0-2.2,UY1+2.2,0.015])]);
+    ctx.fill();
+    /* sun shadow, cast from world coordinates onto the ground */
+    if(mode!=='explode'){
+      ctx.fillStyle=P.shade;
+      poly([pr(dropW([RX0,RY0,ROOF])),pr(dropW([RX1,RY0,ROOF])),
+            pr(dropW([RX1,RY1,ROOF])),pr(dropW([RX0,RY1,ROOF]))]);
+      ctx.fill();
+      ctx.fillStyle=P.shade;
+      poly([pr(dropW([-36,71.4,6.2])),pr(dropW([33,71.4,6.2])),
+            pr(dropW([33,72,6.2])),pr(dropW([-36,72,6.2]))]);
+      ctx.fill();
+    }
+
+    /* building */
+    var F=[], cam=pr([CX,CY,CZ])[2];
+    for(var i=0;i<MODEL.length;i++){
+      var fs=boxFaces(MODEL[i]);
+      for(var j=0;j<fs.length;j++){
+        var pts=fs[j][0], n=fs[j][1], pp=[], d=0;
+        for(var k=0;k<4;k++){var p=pr(pts[k]); pp.push(p); d+=p[2];}
+        var rn=pr([n[0]+CX,n[1]+CY,n[2]+CZ]);
+        if(rn[2]-cam > 0.02) continue;
+        var lum=0.66+0.34*Math.max(0,n[0]*LGT[0]+n[1]*LGT[1]+n[2]*LGT[2]);
+        F.push({q:pp,d:d/4,c:P[fs[j][2]]||P.wall,l:lum,g:fs[j][2]==='glass'});
+      }
+    }
+    F.sort(function(a,b){return b.d-a.d;});
+    ctx.lineJoin='round'; ctx.lineWidth=1;
+    for(var f=0;f<F.length;f++){
+      var o=F[f], q=o.q;
+      poly(q);
+      var ys=[sy2(q[0]),sy2(q[1]),sy2(q[2]),sy2(q[3])];
+      var ya=Math.min(ys[0],ys[1],ys[2],ys[3]), yb=Math.max(ys[0],ys[1],ys[2],ys[3]);
+      if(yb-ya>14){
+        var g=ctx.createLinearGradient(0,ya,0,yb);
+        g.addColorStop(0,rgb(o.c,o.l*1.07));
+        g.addColorStop(1,rgb(o.c,o.l*0.90));
+        ctx.fillStyle=g;
+      } else ctx.fillStyle=rgb(o.c,o.l);
+      ctx.fill();
+      ctx.strokeStyle = o.g ? P.gedge : P.edge;
+      ctx.stroke();
+    }
+  }
+
+  function setMode(m){ mode=m; MODEL=build(m); fit(); draw(); }
+
+  /* ---------- interaction ---------- */
+  var down=false, lx=0, ly=0;
+  cv.addEventListener('pointerdown',function(e){
+    down=true; spin=false; lx=e.clientX; ly=e.clientY;
+    try{cv.setPointerCapture(e.pointerId);}catch(x){}
+  });
+  cv.addEventListener('pointermove',function(e){
+    if(!down) return;
+    yaw += (e.clientX-lx)*0.008;
+    pitch = Math.max(0.06, Math.min(1.35, pitch + (e.clientY-ly)*0.005));
+    lx=e.clientX; ly=e.clientY; draw();
+  });
+  function up(e){ if(down){down=false; try{cv.releasePointerCapture(e.pointerId);}catch(x){}} }
+  cv.addEventListener('pointerup',up); cv.addEventListener('pointercancel',up);
+
+  var btns=document.querySelectorAll('.vbtn');
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener('click',function(){
+      var m=this.getAttribute('data-mode');
+      if(m==='reset'){ yaw=-2.42; pitch=0.30; fit(); draw(); return; }
+      for(var j=0;j<btns.length;j++) btns[j].classList.remove('is-on');
+      this.classList.add('is-on');
+      setMode(m);
+    });
+  }
+  if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').addEventListener)
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+
+  function tick(){ if(spin){ yaw+=0.0018; draw(); } requestAnimationFrame(tick); }
+  fit(); draw();
+  if(!reduce){ setTimeout(function(){ spin=false; }, 15000); tick(); }
+})();
+</script>
+</body>
+</html>
