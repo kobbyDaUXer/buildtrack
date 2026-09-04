@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F5F5F5;
+  --color-ink: #171717;
+  --color-body: #525252;
+  --color-secondary: #404040;
+  --color-tertiary: #737373;
+  --color-disabled: #A3A3A3;
+  --color-line: #E9EAEB;
+  --color-line-subtle: #E5E5E5;
+  --color-accent: #7F56D9;
+  --color-accent-text: #6941C6;
+
+  --color-ok: #067647;
+  --color-ok-bg: #ECFDF3;
+  --color-warn: #B54708;
+  --color-warn-bg: #FFFAEB;
+  --color-risk: #B42318;
+  --color-risk-bg: #FEF3F2;
+
+  --radius-card: 16px;
+  --radius-mid: 12px;
+  --radius-ctl: 8px;
+  --radius-chip: 6px;
+  --radius-tag: 4px;
+
+  --shadow-lift: 0 0 0 0.5px rgba(0,0,0,0.10), 18px 26px 64px -12px rgba(0,0,0,0.16);
+  --shadow-card: 0 0 0 0.5px rgba(0,0,0,0.10), 10px 14px 32px -8px rgba(0,0,0,0.16);
+  --shadow-btn: inset 0 -2px 0 0 rgba(0,0,0,0.05), 0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow-btn-accent: inset 0 1px 0 0 rgba(255,255,255,0.12), 0 1px 2px 0 rgba(0,0,0,0.05);
+}
+
+html, body {
+  background: var(--color-bg);
+  color: var(--color-body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, section, footer { margin: 0; padding: 0; }
+p { margin: 0 0 16px; }
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection { background: #EBE4FB; }
+
+input[type="date"]::-webkit-calendar-picker-indicator { opacity: .5; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
