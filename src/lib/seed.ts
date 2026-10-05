@@ -69,6 +69,14 @@ export const seed: AppState = {
     { id: "l3", date: "2026-08-09", title: "Engineer site visit", body: "Reinforcement for the lintel signed off. Advised 150mm bearing each side. No issues with the blockwork bond.", weather: "Light rain", crewOnSite: 4, photos: [] },
     { id: "l4", date: "2026-06-12", title: "Substructure complete", body: "Oversite concrete cured and DPC laid across the full footprint. Phase closed out slightly under budget.", weather: "Clear", crewOnSite: 7, photos: [] },
   ],
+  materials: [
+    { id: "m1", date: "2026-06-18", material: "Cement", unit: "bags", qty: 300, kind: "purchased", phaseId: "p3", party: "Ashfoam Hardware", cost: 31000, note: "", photos: [] },
+    { id: "m2", date: "2026-06-20", material: "Cement", unit: "bags", qty: 260, kind: "delivered", phaseId: "p3", party: "Ashfoam haulage", cost: 1800, note: "40 bags short on the first trip.", photos: [] },
+    { id: "m3", date: "2026-07-02", material: "Cement", unit: "bags", qty: 215, kind: "used", phaseId: "p3", party: "Kwesi Mensah", cost: 0, note: "", photos: [] },
+    { id: "m4", date: "2026-06-20", material: "Blocks 6in", unit: "pieces", qty: 1800, kind: "purchased", phaseId: "p3", party: "Tema Block Co.", cost: 32000, note: "", photos: [] },
+    { id: "m5", date: "2026-06-22", material: "Blocks 6in", unit: "pieces", qty: 1800, kind: "delivered", phaseId: "p3", party: "Tema Block Co.", cost: 2400, note: "", photos: [] },
+    { id: "m6", date: "2026-07-10", material: "Blocks 6in", unit: "pieces", qty: 1820, kind: "used", phaseId: "p3", party: "Kwesi Mensah", cost: 0, note: "Mason claims 1,820 laid — 20 more than were delivered.", photos: [] },
+  ],
 };
 
 export const blank: AppState = {
@@ -86,4 +94,5 @@ export const blank: AppState = {
   tasks: [],
   contractors: [],
   log: [],
+  materials: [],
 };

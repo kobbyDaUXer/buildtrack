@@ -35,6 +35,7 @@ function merge(loaded: Partial<AppState>): AppState {
     tasks: loaded.tasks ?? [],
     contractors: loaded.contractors ?? [],
     log: (loaded.log ?? []).map((e) => ({ ...e, photos: e.photos ?? [] })),
+    materials: (loaded.materials ?? []).map((m) => ({ ...m, photos: m.photos ?? [] })),
   };
 }
 

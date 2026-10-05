@@ -20,6 +20,7 @@ const GROUPS: { label: string; items: { href: string; label: string }[] }[] = [
     label: "Money",
     items: [
       { href: "/budget", label: "Budget" },
+      { href: "/materials", label: "Materials" },
       { href: "/contractors", label: "Contractors" },
     ],
   },

@@ -77,6 +77,27 @@ export interface LogEntry {
   photos: string[];
 }
 
+export type MovementKind = "purchased" | "delivered" | "used";
+
+/**
+ * One movement of one material. Stock on site is derived, never stored:
+ * delivered − used. Purchased − delivered is what is still owed to you.
+ */
+export interface MaterialMove {
+  id: string;
+  date: string;
+  material: string;
+  unit: string;
+  qty: number;
+  kind: MovementKind;
+  phaseId: string | null;
+  party: string;
+  /** Purchase price, or haulage for a delivery. Not rolled into the budget. */
+  cost: number;
+  note: string;
+  photos: string[];
+}
+
 export interface AppState {
   project: Project;
   phases: Phase[];
@@ -84,6 +105,7 @@ export interface AppState {
   tasks: Task[];
   contractors: Contractor[];
   log: LogEntry[];
+  materials: MaterialMove[];
 }
 
 export const CATEGORIES: CostCategory[] = [
@@ -98,5 +120,11 @@ export const CATEGORIES: CostCategory[] = [
 ];
 
 export const STATUSES: Status[] = ["not-started", "in-progress", "blocked", "done"];
+
+export const MOVEMENT_KINDS: MovementKind[] = ["purchased", "delivered", "used"];
+
+export const UNITS = [
+  "bags", "tonnes", "pieces", "lengths", "trips", "m³", "m²", "litres", "rolls", "sets",
+];
 
 export const CURRENCIES: Currency[] = ["GHS", "USD", "EUR", "GBP", "NGN", "ZAR", "KES"];
