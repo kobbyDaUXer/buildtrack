@@ -99,6 +99,12 @@ export function buildWeekReport(state: AppState, start: string, today: string): 
       issues.push(`${p.name} passed its end date (${shortDate(p.end)}) at ${Math.round(p.progress)}%.`);
     }
   }
+  const noReceipt = spendLines.filter((b) => b.photos.length === 0);
+  if (noReceipt.length) {
+    issues.push(
+      `${noReceipt.length} payment${noReceipt.length === 1 ? "" : "s"} this week ${noReceipt.length === 1 ? "has" : "have"} no receipt attached.`,
+    );
+  }
   if (overdue.length) {
     issues.push(`${overdue.length} task${overdue.length === 1 ? " is" : "s are"} overdue.`);
   }

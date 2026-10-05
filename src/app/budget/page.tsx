@@ -1,11 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useStore, totals } from "@/lib/store";
 import type { BudgetItem, CostCategory } from "@/lib/types";
 import { CATEGORIES } from "@/lib/types";
+import { PhotoThumb, PhotoLightbox } from "@/components/Photos";
+import { savePhoto, deletePhotos } from "@/lib/photos";
 import {
-  Button, Card, CardHead, Empty, Field, Modal, PageHead, Stat, Bar, inputCls,
+  Button, Card, CardHead, Chip, Empty, Field, Modal, PageHead, Stat, Bar, inputCls,
 } from "@/components/ui";
 import { money, shortDate, todayISO, uid, pct } from "@/lib/format";
 
@@ -19,13 +21,19 @@ const emptyItem = (): BudgetItem => ({
   vendor: "",
   paid: false,
   date: todayISO(),
+  photos: [],
 });
 
 export default function BudgetPage() {
   const { state, update, hydrated } = useStore();
   const [draft, setDraft] = useState<BudgetItem | null>(null);
   const [isNew, setIsNew] = useState(false);
-  const [filter, setFilter] = useState<"all" | "unpaid" | "over">("all");
+  const [filter, setFilter] = useState<"all" | "unpaid" | "over" | "noreceipt">("all");
+  const [lightbox, setLightbox] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
+  const addedRef = useRef<string[]>([]);
+  const originalRef = useRef<string[]>([]);
 
   const t = totals(state);
   const currency = state.project.currency;
@@ -46,14 +54,34 @@ export default function BudgetPage() {
   const phaseName = (id: string | null) =>
     state.phases.find((p) => p.id === id)?.name ?? "Unassigned";
 
+  const noReceipt = state.budget.filter((b) => b.actual > 0 && b.photos.length === 0);
+  const noReceiptValue = noReceipt.reduce((n, b) => n + b.actual, 0);
+
   const rows = state.budget.filter((b) => {
     if (filter === "unpaid") return !b.paid && b.actual > 0;
     if (filter === "over") return b.actual > b.budgeted && b.budgeted > 0;
+    if (filter === "noreceipt") return b.actual > 0 && b.photos.length === 0;
     return true;
   });
 
+  const openEdit = (b: BudgetItem) => {
+    addedRef.current = [];
+    originalRef.current = b.photos;
+    setDraft({ ...b });
+    setIsNew(false);
+  };
+
+  const cancel = () => {
+    if (addedRef.current.length) void deletePhotos(addedRef.current);
+    addedRef.current = [];
+    setDraft(null);
+  };
+
   const save = () => {
     if (!draft || !draft.description.trim()) return;
+    const dropped = originalRef.current.filter((id) => !draft.photos.includes(id));
+    if (dropped.length) void deletePhotos(dropped);
+    addedRef.current = [];
     update((s) => ({
       ...s,
       budget: isNew ? [...s.budget, draft] : s.budget.map((b) => (b.id === draft.id ? draft : b)),
@@ -61,8 +89,26 @@ export default function BudgetPage() {
     setDraft(null);
   };
 
-  const remove = (id: string) =>
+  const addFiles = async (files: FileList) => {
+    setUploading(true);
+    try {
+      const ids: string[] = [];
+      for (const file of Array.from(files)) {
+        if (!file.type.startsWith("image/")) continue;
+        ids.push(await savePhoto(file));
+      }
+      addedRef.current = [...addedRef.current, ...ids];
+      setDraft((d) => (d ? { ...d, photos: [...d.photos, ...ids] } : d));
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const remove = (id: string) => {
+    const item = state.budget.find((b) => b.id === id);
+    if (item?.photos.length) void deletePhotos(item.photos);
     update((s) => ({ ...s, budget: s.budget.filter((b) => b.id !== id) }));
+  };
 
   const togglePaid = (id: string) =>
     update((s) => ({
@@ -79,6 +125,8 @@ export default function BudgetPage() {
           <Button
             variant="primary"
             onClick={() => {
+              addedRef.current = [];
+              originalRef.current = [];
               setDraft(emptyItem());
               setIsNew(true);
             }}
@@ -135,11 +183,28 @@ export default function BudgetPage() {
         )}
       </Card>
 
+      {noReceipt.length ? (
+        <Card className="bg-warn-bg">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-col gap-0.5">
+              <h2 className="text-[14px] font-semibold text-warn">
+                {noReceipt.length} payment{noReceipt.length === 1 ? "" : "s"} with no receipt attached
+              </h2>
+              <p className="text-[13px] text-warn">
+                {money(noReceiptValue, currency)} recorded without proof. Attach the transfer slip or
+                receipt while you can still get it.
+              </p>
+            </div>
+            <Button size="sm" onClick={() => setFilter("noreceipt")}>Show them</Button>
+          </div>
+        </Card>
+      ) : null}
+
       <Card pad={false}>
         <div className="flex flex-wrap items-center justify-between gap-3 px-6 pt-6">
           <h2 className="text-ink text-[17px] font-semibold">Line items</h2>
           <div className="flex gap-1 rounded-mid bg-sunk p-1">
-            {(["all", "unpaid", "over"] as const).map((f) => (
+            {(["all", "unpaid", "over", "noreceipt"] as const).map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
@@ -147,7 +212,7 @@ export default function BudgetPage() {
                   filter === f ? "bg-bg text-ink shadow-btn" : "text-tertiary hover:text-secondary"
                 }`}
               >
-                {f === "all" ? "All" : f === "unpaid" ? "Unpaid" : "Over budget"}
+                {f === "all" ? "All" : f === "unpaid" ? "Unpaid" : f === "over" ? "Over budget" : "No receipt"}
               </button>
             ))}
           </div>
@@ -167,6 +232,7 @@ export default function BudgetPage() {
                   <th className="px-3 py-3 text-right font-semibold">Budgeted</th>
                   <th className="px-3 py-3 text-right font-semibold">Actual</th>
                   <th className="px-3 py-3 text-right font-semibold">Variance</th>
+                  <th className="px-3 py-3 font-semibold">Receipt</th>
                   <th className="px-3 py-3 font-semibold">Paid</th>
                   <th className="px-6 py-3" />
                 </tr>
@@ -206,6 +272,21 @@ export default function BudgetPage() {
                         {money(Math.abs(variance), currency)}
                       </td>
                       <td className="px-3 py-4">
+                        {b.photos.length ? (
+                          <span className="flex gap-1">
+                            {b.photos.slice(0, 2).map((pid) => (
+                              <span key={pid} className="block size-9 overflow-hidden rounded-tag">
+                                <PhotoThumb id={pid} onOpen={setLightbox} />
+                              </span>
+                            ))}
+                          </span>
+                        ) : b.actual > 0 ? (
+                          <Chip tone="warn">none</Chip>
+                        ) : (
+                          <span className="text-[13px] text-disabled">—</span>
+                        )}
+                      </td>
+                      <td className="px-3 py-4">
                         <label className="flex items-center gap-2 text-[13px] text-tertiary">
                           <input
                             type="checkbox"
@@ -219,13 +300,7 @@ export default function BudgetPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex justify-end gap-2">
-                          <Button
-                            size="sm"
-                            onClick={() => {
-                              setDraft({ ...b });
-                              setIsNew(false);
-                            }}
-                          >
+                          <Button size="sm" onClick={() => openEdit(b)}>
                             Edit
                           </Button>
                           <Button variant="danger" size="sm" onClick={() => remove(b.id)}>
@@ -245,10 +320,10 @@ export default function BudgetPage() {
       <Modal
         open={draft !== null}
         title={isNew ? "Add line item" : "Edit line item"}
-        onClose={() => setDraft(null)}
+        onClose={cancel}
         footer={
           <>
-            <Button onClick={() => setDraft(null)}>Cancel</Button>
+            <Button onClick={cancel}>Cancel</Button>
             <Button variant="primary" onClick={save} disabled={!draft?.description.trim()}>
               Save item
             </Button>
@@ -336,9 +411,50 @@ export default function BudgetPage() {
                 Settled in full
               </label>
             </Field>
+            <Field label="Receipt or transfer slip" wide>
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {draft.photos.map((pid) => (
+                    <PhotoThumb
+                      key={pid}
+                      id={pid}
+                      onOpen={setLightbox}
+                      onRemove={(rid) =>
+                        setDraft((d) => (d ? { ...d, photos: d.photos.filter((x) => x !== rid) } : d))
+                      }
+                    />
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => fileRef.current?.click()}
+                    disabled={uploading}
+                    className="flex size-20 shrink-0 flex-col items-center justify-center gap-1 rounded-chip bg-sunk text-[12px] font-semibold text-tertiary transition-colors duration-150 hover:text-secondary disabled:opacity-50"
+                  >
+                    <span className="text-[18px] leading-none">+</span>
+                    {uploading ? "Saving" : "Add"}
+                  </button>
+                </div>
+                <input
+                  ref={fileRef}
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className="hidden"
+                  onChange={(e) => {
+                    if (e.target.files?.length) void addFiles(e.target.files);
+                    e.target.value = "";
+                  }}
+                />
+                <span className="text-[12px] text-tertiary">
+                  Stored on this device only — not part of the JSON backup.
+                </span>
+              </div>
+            </Field>
           </div>
         ) : null}
       </Modal>
+
+      {lightbox ? <PhotoLightbox id={lightbox} onClose={() => setLightbox(null)} /> : null}
     </>
   );
 }

@@ -44,6 +44,8 @@ export interface BudgetItem {
   vendor: string;
   paid: boolean;
   date: string;
+  /** Receipt or transfer-slip photos. IndexedDB keys, same store as site photos. */
+  photos: string[];
 }
 
 export interface Task {
