@@ -38,3 +38,24 @@ export function uid(): string {
 export function pct(n: number): string {
   return `${Math.round(n)}%`;
 }
+
+export function addDays(iso: string, n: number): string {
+  const d = new Date(iso + "T00:00:00");
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
+/** Monday of the week containing `iso`. Weeks run Monday to Sunday. */
+export function mondayOf(iso: string): string {
+  const d = new Date(iso + "T00:00:00");
+  return addDays(iso, -((d.getDay() + 6) % 7));
+}
+
+export function weekLabel(start: string, end: string): string {
+  const a = new Date(start + "T00:00:00");
+  const b = new Date(end + "T00:00:00");
+  const sameYear = a.getFullYear() === b.getFullYear();
+  const fmt = (d: Date, year: boolean) =>
+    d.toLocaleDateString("en", { day: "numeric", month: "short", ...(year ? { year: "numeric" } : {}) });
+  return `${fmt(a, !sameYear)} – ${fmt(b, true)}`;
+}

@@ -28,6 +28,7 @@ const GROUPS: { label: string; items: { href: string; label: string }[] }[] = [
     label: "Record",
     items: [
       { href: "/log", label: "Site log" },
+      { href: "/report", label: "Weekly report" },
       { href: "/plans", label: "Plans" },
     ],
   },

@@ -14,6 +14,7 @@ const emptyTask = (): Task => ({
   due: todayISO(),
   priority: "medium",
   done: false,
+  completedAt: "",
 });
 
 const PRIORITY: Priority[] = ["high", "medium", "low"];
@@ -42,7 +43,11 @@ export default function TasksPage() {
   const toggle = (id: string) =>
     update((s) => ({
       ...s,
-      tasks: s.tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t)),
+      tasks: s.tasks.map((t) =>
+        t.id === id
+          ? { ...t, done: !t.done, completedAt: !t.done ? todayISO() : "" }
+          : t,
+      ),
     }));
 
   const remove = (id: string) =>

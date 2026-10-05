@@ -32,7 +32,7 @@ function merge(loaded: Partial<AppState>): AppState {
     project: { ...seed.project, ...(loaded.project ?? {}) },
     phases: loaded.phases ?? [],
     budget: loaded.budget ?? [],
-    tasks: loaded.tasks ?? [],
+    tasks: (loaded.tasks ?? []).map((t) => ({ ...t, completedAt: t.completedAt ?? "" })),
     contractors: loaded.contractors ?? [],
     log: (loaded.log ?? []).map((e) => ({ ...e, photos: e.photos ?? [] })),
     materials: (loaded.materials ?? []).map((m) => ({ ...m, photos: m.photos ?? [] })),

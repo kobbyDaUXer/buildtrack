@@ -54,6 +54,8 @@ export interface Task {
   due: string;
   priority: Priority;
   done: boolean;
+  /** Set when the task is ticked. Empty for tasks completed before this existed. */
+  completedAt: string;
 }
 
 export interface Contractor {
